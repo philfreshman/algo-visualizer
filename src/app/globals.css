@@ -1,4 +1,14 @@
-@tailwind base;
+/*https://fonts.google.com/specimen/Roboto+Condensed?preview.text=ALGO-VISUALIZER*/
+/* styles/fonts.css */
+@font-face {
+  font-family: 'RobotoCondensed';
+  src: url('/public/fonts/RobotoCondensed-SemiBoldItalic.ttf');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+  @tailwind base;
   @tailwind components;
   @tailwind utilities;
 
@@ -73,4 +83,14 @@
     body {
       @apply bg-background text-foreground;
     }
+
+    .font-outline-2 {
+      -webkit-text-stroke: 2px black;
+    }
+    .font-outline-4 {
+      -webkit-text-stroke: 4px black;
+    }
   }
+
+
+
