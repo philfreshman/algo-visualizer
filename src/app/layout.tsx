@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={inter.className + " flex flex-col h-screen font-mono"} cz-shortcut-listen="false">
+      <body className={inter.className + " flex h-screen flex-col font-mono"} cz-shortcut-listen="false">
         <Header />
         <main className="flex-grow">{children}</main>
       </body>

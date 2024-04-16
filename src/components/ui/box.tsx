@@ -2,11 +2,12 @@
 import { memo } from "react"
 
 interface BoxProps {
+  id: string
   isToggled: boolean
   toggleBox: () => void
 }
 
-const Box = memo<BoxProps>(({ isToggled, toggleBox }) => {
+const Box = memo<BoxProps>(({ id, isToggled, toggleBox }) => {
   const handleMouseDown = () => {
     toggleBox()
   }
@@ -19,7 +20,8 @@ const Box = memo<BoxProps>(({ isToggled, toggleBox }) => {
 
   return (
     <td
-      className={`aspect-square h-6 min-w-6  hover:cursor-pointer border border-sky-500 ${isToggled ? "bg-black" : "bg-white"}`}
+      id={id}
+      className={`md-min-w-[22px] h-[18px] min-w-[18px] border border-sky-500 hover:cursor-pointer sm:h-[20px] sm:min-w-[20px] md:h-[22px] lg:h-[24px] lg:min-w-[24px] ${isToggled ? "bg-gray-600" : "bg-white"}`}
       onMouseDown={handleMouseDown}
       onMouseOver={handleMouseOver}
     />

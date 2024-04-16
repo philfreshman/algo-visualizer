@@ -22,14 +22,14 @@ export default function NavMenu() {
       <MenubarMenu>
         <MenubarTrigger>Algorithm</MenubarTrigger>
         <MenubarContent>
-          <MenubarCheckboxItem checked>Algorithm A</MenubarCheckboxItem>
-          <MenubarCheckboxItem>Algorithm B</MenubarCheckboxItem>
+          <MenubarCheckboxItem checked>Depth First Search</MenubarCheckboxItem>
+          <MenubarCheckboxItem>Breath First Search</MenubarCheckboxItem>
           <MenubarCheckboxItem>Algorithm C</MenubarCheckboxItem>
         </MenubarContent>
       </MenubarMenu>
 
       <MenubarMenu>
-        <MenubarTrigger>Maze</MenubarTrigger>
+        <MenubarTrigger>Grid</MenubarTrigger>
         <MenubarContent>
           <MenubarCheckboxItem>Random</MenubarCheckboxItem>
           <MenubarCheckboxItem checked>Lines</MenubarCheckboxItem>
@@ -46,7 +46,7 @@ export default function NavMenu() {
         </MenubarContent>
       </MenubarMenu>
 
-      <Button variant={"ghost"}>Stop</Button>
+      <Button variant={"ghost"}>Reset</Button>
       <Button variant={"ghost"}>Run</Button>
     </Menubar>
   )

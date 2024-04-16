@@ -1,11 +1,12 @@
 import Board from "@/components/Board"
+import React, { memo } from "react"
+
+const MemoizedBoard = memo(Board) // Memoize the Board component
 
 export default function Home() {
   return (
-    <div className="w-full h-full flex justify-center items-center p-7 min-w-[900px] ">
-      <div className="w-full h-full overflow-scroll ">
-        <Board />
-      </div>
+    <div className="flex h-full w-full items-center justify-center overflow-scroll p-7">
+      <MemoizedBoard />
     </div>
   )
 }

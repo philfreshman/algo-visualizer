@@ -1,6 +1,6 @@
 "use client"
-import { useEffect, useState } from "react"
 import Box from "@/components/ui/box"
+import { useEffect, useState } from "react"
 
 export default function Board() {
   const [isDragging, setIsDragging] = useState(false)
@@ -27,20 +27,18 @@ export default function Board() {
   }
 
   return (
-    <div className={"flex justify-center"}>
-      <div onMouseUp={handleMouseUp}>
-        <table>
-          <tbody>
-            {Array.from({ length: 30 }, (_, i) => (
-              <tr key={i}>
-                {Array.from({ length: 60 }, (_, j) => (
-                  <Box key={j} isToggled={boxes[i * 60 + j]} toggleBox={() => toggleBox(i * 60 + j)} />
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+    <div className={"flex rotate-90 transform justify-center md:rotate-0"} onMouseUp={handleMouseUp}>
+      <table>
+        <tbody>
+          {Array.from({ length: 30 }, (_, i) => (
+            <tr key={i}>
+              {Array.from({ length: 40 }, (_, j) => (
+                <Box id={`${i}:${j}`} key={j} isToggled={boxes[i * 60 + j]} toggleBox={() => toggleBox(i * 60 + j)} />
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 }
