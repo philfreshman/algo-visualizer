@@ -1,4 +1,4 @@
-import NavMenu from "@/components/NavMenu"
+import NavMenu from "@/components/nav-menu"
 import { Roboto_Condensed } from "next/font/google"
 
 const robotoCondensed = Roboto_Condensed({ weight: "800", style: "italic" })

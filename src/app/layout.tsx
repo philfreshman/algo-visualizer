@@ -1,21 +1,20 @@
-import type { Metadata } from "next"
+"use client"
+
 import { Inter } from "next/font/google"
-import Header from "@/components/Header"
+import Header from "@/components/header"
 import "./globals.css"
+import { ThemeProvider } from "next-themes"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata: Metadata = {
-  title: "ALGO VISUALIZER",
-  description: "",
-}
-
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className={inter.className + " flex flex-col h-screen font-mono"}>
-        <Header />
-        <main className="flex-grow">{children}</main>
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className + " flex flex-col h-screen font-mono"} cz-shortcut-listen="false">
+        <ThemeProvider attribute="class" defaultTheme="light">
+          <Header />
+          <main className="flex-grow">{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   )
