@@ -1,4 +1,3 @@
-"use client"
 import { memo } from "react"
 
 interface BoxProps {
@@ -8,15 +7,8 @@ interface BoxProps {
 }
 
 const Box = memo<BoxProps>(({ id, isToggled, toggleBox }) => {
-  const handleMouseDown = () => {
-    toggleBox()
-  }
-
-  const handleMouseOver = (e: any) => {
-    if (e.buttons === 1) {
-      toggleBox()
-    }
-  }
+  const handleMouseDown = () => toggleBox()
+  const handleMouseOver = (e: any) => e.buttons === 1 && toggleBox()
 
   return (
     <td

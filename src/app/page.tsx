@@ -1,4 +1,4 @@
-import Board from "@/components/Board"
+import Board from "@/components/board"
 import React, { memo } from "react"
 
 const MemoizedBoard = memo(Board) // Memoize the Board component

@@ -1,14 +1,10 @@
-import type { Metadata } from "next"
+"use client"
+
 import { Inter } from "next/font/google"
-import Header from "@/components/Header"
+import Header from "@/components/header"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
-
-export const metadata: Metadata = {
-  title: "ALGO VISUALIZER",
-  description: "",
-}
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
