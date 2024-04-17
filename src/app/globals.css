@@ -93,4 +93,11 @@
   }
 
 
+.checked{
+  background-color: gray;
+}
+
+.wall{
+  background-color: black;
+}
 

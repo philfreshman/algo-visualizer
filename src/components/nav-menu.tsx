@@ -1,5 +1,5 @@
-import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar"
 import { Button } from "@/components/ui/button"
+import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar"
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
 import { useState } from "react"
 import { useTheme } from "next-themes"
@@ -18,14 +18,14 @@ export default function NavMenu() {
       <MenubarMenu>
         <MenubarTrigger>Algorithm</MenubarTrigger>
         <MenubarContent>
-          <MenubarCheckboxItem checked>Algorithm A</MenubarCheckboxItem>
-          <MenubarCheckboxItem>Algorithm B</MenubarCheckboxItem>
+          <MenubarCheckboxItem checked>Depth First Search</MenubarCheckboxItem>
+          <MenubarCheckboxItem>Breath First Search</MenubarCheckboxItem>
           <MenubarCheckboxItem>Algorithm C</MenubarCheckboxItem>
         </MenubarContent>
       </MenubarMenu>
 
       <MenubarMenu>
-        <MenubarTrigger>Maze</MenubarTrigger>
+        <MenubarTrigger>Grid</MenubarTrigger>
         <MenubarContent>
           <MenubarCheckboxItem>Random</MenubarCheckboxItem>
           <MenubarCheckboxItem checked>Lines</MenubarCheckboxItem>
@@ -57,8 +57,8 @@ export default function NavMenu() {
           <MenubarCheckboxItem disabled>System</MenubarCheckboxItem>
         </MenubarContent>
       </MenubarMenu>
-
-      <Button variant={"ghost"}>Stop</Button>
+            
+      <Button variant={"ghost"}>Reset</Button>
       <Button variant={"ghost"}>Run</Button>
     </Menubar>
   )

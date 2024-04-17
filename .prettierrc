@@ -1,4 +1,6 @@
 {
   "printWidth": 180,
-  "semi": false
+  "semi": false,
+  "plugins": ["prettier-plugin-organize-attributes", "prettier-plugin-organize-imports", "prettier-plugin-tailwindcss"],
+    "tailwindFunctions": ["tw", "clsx"]
 }
