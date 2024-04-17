@@ -92,6 +92,11 @@
     }
   }
 
+html.dark{
+  .checked{
+    background-color: burlywood;
+  }
+}
 
 .checked{
   background-color: gray;
