@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button"
 import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar"
+import { AlgorithmContext } from "@/lib/context"
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
-import { useState } from "react"
 import { useTheme } from "next-themes"
+import { useContext, useState } from "react"
 
 export default function NavMenu() {
   const { theme, setTheme } = useTheme()
@@ -13,30 +14,38 @@ export default function NavMenu() {
     setCurrentTheme(theme)
   }
 
+  const algorithmContext = useContext(AlgorithmContext)
+  if (!algorithmContext) throw new Error("AlgorithmContext is missing")
+  const { pathfindingAlgorithm, setPathfindingAlgorithm, mazeGenerationAlgorithm, setMazeGenerationAlgorithm, searchAlgorithms, mazeAlgorithms, startAlgorithm } = algorithmContext
+
   return (
     <Menubar>
       <MenubarMenu>
         <MenubarTrigger>Algorithm</MenubarTrigger>
         <MenubarContent>
-          <MenubarCheckboxItem checked>Depth First Search</MenubarCheckboxItem>
-          <MenubarCheckboxItem>Breath First Search</MenubarCheckboxItem>
-          <MenubarCheckboxItem>Algorithm C</MenubarCheckboxItem>
+          {Object.entries(searchAlgorithms).map(([key, value]) => (
+            <MenubarCheckboxItem checked={pathfindingAlgorithm == key} key={key} onClick={() => setPathfindingAlgorithm(key)}>
+              {value}
+            </MenubarCheckboxItem>
+          ))}
         </MenubarContent>
       </MenubarMenu>
 
       <MenubarMenu>
         <MenubarTrigger>Grid</MenubarTrigger>
         <MenubarContent>
-          <MenubarCheckboxItem>Random</MenubarCheckboxItem>
-          <MenubarCheckboxItem checked>Lines</MenubarCheckboxItem>
-          <MenubarCheckboxItem>I don't know yet</MenubarCheckboxItem>
+          {Object.entries(mazeAlgorithms).map(([key, value]) => (
+            <MenubarCheckboxItem checked={mazeGenerationAlgorithm == key} key={key} onClick={() => setMazeGenerationAlgorithm(key)}>
+              {value}
+            </MenubarCheckboxItem>
+          ))}
         </MenubarContent>
       </MenubarMenu>
 
       <MenubarMenu>
         <MenubarTrigger>Placeholder</MenubarTrigger>
         <MenubarContent>
-          <MenubarCheckboxItem>A</MenubarCheckboxItem>
+          <MenubarCheckboxItem onSelect={() => console.log(123)}>A</MenubarCheckboxItem>
           <MenubarCheckboxItem>B</MenubarCheckboxItem>
           <MenubarCheckboxItem>C</MenubarCheckboxItem>
         </MenubarContent>
@@ -57,9 +66,11 @@ export default function NavMenu() {
           <MenubarCheckboxItem disabled>System</MenubarCheckboxItem>
         </MenubarContent>
       </MenubarMenu>
-            
+
       <Button variant={"ghost"}>Reset</Button>
-      <Button variant={"ghost"}>Run</Button>
+      <Button variant={"ghost"} onClick={() => startAlgorithm()}>
+        Run
+      </Button>
     </Menubar>
   )
 }
