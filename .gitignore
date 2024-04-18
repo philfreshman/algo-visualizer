@@ -132,3 +132,5 @@ dist
 bun.lockb
 .DS_Store
 .idea/
+# Turborepo
+.turbo

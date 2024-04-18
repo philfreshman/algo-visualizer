@@ -102,6 +102,10 @@ html.dark{
   background-color: gray;
 }
 
+.visited{
+  background-color: #ACE9EC;
+}
+
 .wall{
   background-color: black;
 }
