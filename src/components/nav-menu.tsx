@@ -1,11 +1,14 @@
 import { Button } from "@/components/ui/button"
-import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar"
+import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarItem, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar"
+import { Slider } from "@/components/ui/slider"
 import { AlgorithmContext } from "@/lib/context"
+import { local } from "@/lib/utils/local"
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
 import { useTheme } from "next-themes"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 
 export default function NavMenu() {
+  const speedScale = 150
   const { theme, setTheme } = useTheme()
   const [currentTheme, setCurrentTheme] = useState(theme)
 
@@ -17,6 +20,17 @@ export default function NavMenu() {
   const algorithmContext = useContext(AlgorithmContext)
   if (!algorithmContext) throw new Error("AlgorithmContext is missing")
   const { pathfindingAlgorithm, setPathfindingAlgorithm, mazeGenerationAlgorithm, setMazeGenerationAlgorithm, searchAlgorithms, mazeAlgorithms, startAlgorithm } = algorithmContext
+
+  const [delay, setDelay] = useState<number>(0)
+  const onSetDelay = (value: number) => {
+    setDelay((prevState) => {
+      if (prevState === value) return prevState
+      local.setItem("delay", String(speedScale - value))
+      return speedScale - value
+    })
+  }
+
+  useEffect(() => setDelay(100 - Number(local.getItem("delay"))), [])
 
   return (
     <Menubar>
@@ -43,11 +57,11 @@ export default function NavMenu() {
       </MenubarMenu>
 
       <MenubarMenu>
-        <MenubarTrigger>Placeholder</MenubarTrigger>
-        <MenubarContent>
-          <MenubarCheckboxItem onSelect={() => console.log(123)}>A</MenubarCheckboxItem>
-          <MenubarCheckboxItem>B</MenubarCheckboxItem>
-          <MenubarCheckboxItem>C</MenubarCheckboxItem>
+        <MenubarTrigger>Speed</MenubarTrigger>
+        <MenubarContent align={"center"}>
+          <MenubarItem>
+            <Slider defaultValue={[speedScale - delay]} min={0} max={speedScale} name={"slow"} onValueChange={(num) => onSetDelay(num[0])} step={1} />
+          </MenubarItem>
         </MenubarContent>
       </MenubarMenu>
 
