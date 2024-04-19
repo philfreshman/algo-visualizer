@@ -1,5 +1,7 @@
 // DEPTH FIRST SEARCH
 // Helper function that returns a Promise that resolves after `ms` milliseconds
+import { local } from "@/lib/utils/local"
+
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 const dfs = async (matrix: Matrix, visited: Position[], current: Position, target: Position, speed: number): Promise<Position[] | null> => {
@@ -8,11 +10,12 @@ const dfs = async (matrix: Matrix, visited: Position[], current: Position, targe
     return null
   }
 
+  // custom wall
   if (matrix[current.row][current.col] === 1) {
     return null
   }
 
-  // target
+  // target found
   if (current.row === target.row && current.col === target.col) {
     visited.push({ row: current.row, col: current.col })
     return visited
@@ -35,9 +38,10 @@ const dfs = async (matrix: Matrix, visited: Position[], current: Position, targe
   // mark the matrix cell as visited
   matrix[current.row][current.col] = 1
 
+  await delay(Number(local.getItem("delay")))
+
   // explore neighbors
   let res: Position[] | null
-  await delay(speed)
   res = await dfs(matrix, visited, { row: current.row, col: current.col + 1 }, target, speed) // left
   if (res !== null) {
     return res

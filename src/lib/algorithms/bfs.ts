@@ -1,3 +1,5 @@
+import { local } from "@/lib/utils/local"
+
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 const bfs = async (matrix: Matrix, start: Position, target: Position, speed: number): Promise<Position[] | null> => {
@@ -39,7 +41,7 @@ const bfs = async (matrix: Matrix, start: Position, target: Position, speed: num
       }
     }
 
-    await delay(speed) // Delay here
+    await delay(Number(local.getItem("delay")))
   }
 
   return null
