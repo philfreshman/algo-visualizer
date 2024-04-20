@@ -93,12 +93,12 @@
   }
 
 html.dark{
-  .checked{
+  .toggled{
     background-color: burlywood;
   }
 }
 
-.checked{
+.toggled{
   background-color: gray;
 }
 
@@ -107,6 +107,6 @@ html.dark{
 }
 
 .wall{
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.86);
 }
 

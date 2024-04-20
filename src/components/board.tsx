@@ -5,9 +5,10 @@ import { useCore } from "@/lib/core"
 import { keyShortcuts } from "@/lib/utils/key-shortcuts"
 
 export default function Board() {
-  const { matrix, toggleBox, clearBoard } = useCore()
+  const { matrix, toggleBox, clearToggled, resetBoard } = useCore()
 
-  keyShortcuts.c(clearBoard)
+  keyShortcuts("c", clearToggled)
+  keyShortcuts("x", resetBoard)
 
   return (
     <div className={"flex rotate-90 transform justify-center hover:cursor-crosshair md:rotate-0"}>

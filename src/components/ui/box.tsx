@@ -13,7 +13,7 @@ const Box = memo<BoxProps>(({ id, isToggled, toggleBox }) => {
   return (
     <td
       id={id}
-      className={`md-min-w-[22px] h-[18px] min-w-[18px] border border-sky-500 sm:h-[20px] sm:min-w-[20px] md:h-[22px] lg:h-[24px] lg:min-w-[24px] ${isToggled ? "checked" : ""}`}
+      className={`md-min-w-[22px] h-[18px] min-w-[18px] border border-sky-500 sm:h-[20px] sm:min-w-[20px] md:h-[22px] lg:h-[24px] lg:min-w-[24px] ${isToggled ? "toggled" : ""}`}
       onMouseDown={handleMouseDown}
       onMouseOver={handleMouseOver}
     />

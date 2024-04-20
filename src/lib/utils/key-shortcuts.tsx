@@ -1,18 +1,21 @@
 import { useEffect } from "react"
 
-export const keyShortcuts = {
-  c(handler: any) {
-    useEffect(() => {
-      const handleKeyPress = (e: KeyboardEvent) => {
-        if (e.key.toLowerCase() === "c") handler()
+export const keyShortcuts = (key: string, func?: () => void) => {
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (func && key === "space") {
+        func()
+        return
+      } else if (func && e.key.toLowerCase() === key) {
+        func()
       }
+    }
 
-      window.addEventListener("keypress", handleKeyPress)
+    window.addEventListener("keypress", handleKeyPress)
 
-      // Cleanup function
-      return () => {
-        window.removeEventListener("keypress", handleKeyPress)
-      }
-    }, [])
-  },
+    // Cleanup function
+    return () => {
+      window.removeEventListener("keypress", handleKeyPress)
+    }
+  }, [])
 }
