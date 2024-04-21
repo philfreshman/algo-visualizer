@@ -3,11 +3,13 @@
 import Box from "@/components/ui/box"
 import { useCore } from "@/lib/core"
 import { keyShortcuts } from "@/lib/utils/key-shortcuts"
+import { clearToggled } from "@/lib/utils/reset"
 
 export default function Board() {
-  const { matrix, toggleBox, clearBoard } = useCore()
+  const { matrix, toggleBox, resetBoard } = useCore()
 
-  keyShortcuts.c(clearBoard)
+  keyShortcuts("c", clearToggled)
+  keyShortcuts("x", resetBoard)
 
   return (
     <div className={"flex rotate-90 transform justify-center hover:cursor-crosshair md:rotate-0"}>

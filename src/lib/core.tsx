@@ -2,6 +2,8 @@
 
 import bfs from "@/lib/algorithms/bfs"
 import dfs from "@/lib/algorithms/dfs"
+import { clearVisited } from "@/lib/utils/reset"
+import { session } from "@/lib/utils/session"
 import { useContext, useEffect, useState } from "react"
 import { AlgorithmContext } from "./context"
 
@@ -9,39 +11,38 @@ export function useCore() {
   // config
   const cols = 40
   const rows = 30
-  const speed = 10 //ms
-  const init = () => {
-    return Array(rows)
+  const init = () =>
+    Array(rows)
       .fill(0)
       .map(() => Array(cols).fill(0))
-  }
 
   const algorithmContext = useContext(AlgorithmContext)
   if (!algorithmContext) throw new Error("AlgorithmContext is missing")
 
-  const { pathfindingAlgorithm, isRunning, stopAlgorithm } = algorithmContext
+  const { pathfindingAlgorithm, isRunning, startTrigger, setCompleted } = algorithmContext
   const [matrix, setMatrix] = useState<Matrix>(init())
 
   // handlers
-  const run = () => {
+  const run = async () => {
     let visited: Position[] = []
-
+    await clearVisited()
     switch (pathfindingAlgorithm) {
       case "DFS":
-        dfs(matrix, visited, { col: 0, row: 0 }, { col: 28, row: 28 }, speed).then()
+        await dfs(matrix, visited, { col: 0, row: 0 }, { col: 28, row: 28 }).then()
         break
       case "BFS":
-        bfs(matrix, { col: 0, row: 0 }, { col: 28, row: 28 }, speed).then()
+        await bfs(matrix, { col: 0, row: 0 }, { col: 28, row: 28 }).then()
         break
       default:
         console.log("run => algorithm not found!")
     }
+    setCompleted()
   }
 
   const toggleBox = (i: number, j: number) => {
     let box = document.querySelector(`#B${i}\\:${j}`)
     if (box && !box.classList.contains("wall")) {
-      box!.classList.toggle("checked")
+      box!.classList.toggle("toggled")
     }
     setMatrix((prevMatrix: Matrix) => {
       const newMatrix = prevMatrix.map((row) => [...row])
@@ -50,26 +51,21 @@ export function useCore() {
     })
   }
 
-  const clearBox = async (col: number, row: number) => {
-    document.querySelector(`#B${col}\\:${row}`)?.classList.remove("visited")
-  }
-  const clearBoard = () => {
+  const clearMatrix = () => {
     setMatrix((prevMatrix: Matrix) => {
-      return prevMatrix.map((row, i) =>
-        row.map((col, j) => {
-          clearBox(i, j).then()
-          return 0
-        }),
-      )
+      return prevMatrix.map((row) => row.map(() => 0))
     })
   }
 
-  useEffect(() => {
-    if (isRunning) {
-      run()
-      stopAlgorithm()
-    }
-  }, [isRunning])
+  const resetBoard = async () => {
+    session.setItem("shouldTerminate", "true")
+    session.setItem("isRunning", "false")
+    clearVisited()
+  }
 
-  return { cols, rows, matrix, toggleBox, clearBoard }
+  useEffect(() => {
+    if (isRunning) run().then()
+  }, [startTrigger])
+
+  return { cols, rows, matrix, toggleBox, resetBoard }
 }
