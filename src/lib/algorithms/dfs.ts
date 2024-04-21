@@ -7,6 +7,7 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 const dfs = async (matrix: Matrix, visited: Position[], current: Position, target: Position): Promise<Position[] | null> => {
   if (session.getItem("shouldTerminate") === "true") {
+    console.log("terminated 1")
     return null // terminate the algorithm
   }
 
@@ -57,6 +58,7 @@ const dfs = async (matrix: Matrix, visited: Position[], current: Position, targe
       shouldTerminate = session.getItem("shouldTerminate") === "true"
     }
     if (shouldTerminate) {
+      console.log("terminated 2")
       return null // terminate the algorithm
     }
   }

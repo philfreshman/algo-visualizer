@@ -2,6 +2,7 @@
 
 import bfs from "@/lib/algorithms/bfs"
 import dfs from "@/lib/algorithms/dfs"
+import { clearVisited } from "@/lib/utils/reset"
 import { session } from "@/lib/utils/session"
 import { useContext, useEffect, useState } from "react"
 import { AlgorithmContext } from "./context"
@@ -50,48 +51,21 @@ export function useCore() {
     })
   }
 
-  const clearVisited = async (): Promise<void> => {
-    const clear = (col: number, row: number) => {
-      document.querySelector(`#B${col}\\:${row}`)?.classList.remove("visited")
-    }
-
-    const promises = []
-    for (let i = 0; i < matrix.length; i++) {
-      for (let j = 0; j < matrix[i].length; j++) {
-        promises.push(clear(i, j))
-      }
-    }
-
-    await Promise.all(promises)
-  }
-
   const clearMatrix = () => {
     setMatrix((prevMatrix: Matrix) => {
       return prevMatrix.map((row) => row.map(() => 0))
     })
   }
 
-  const clearToggled = () => {
-    const clear = async (col: number, row: number) => {
-      document.querySelector(`#B${col}\\:${row}`)?.classList.remove("toggled")
-    }
-    matrix.map((row, i) => {
-      row.map((col, j) => {
-        clear(i, j).then()
-      })
-    })
-  }
-
   const resetBoard = async () => {
     session.setItem("shouldTerminate", "true")
     session.setItem("isRunning", "false")
-    await clearVisited()
-    console.log(matrix)
+    clearVisited()
   }
 
   useEffect(() => {
     if (isRunning) run().then()
   }, [startTrigger])
 
-  return { cols, rows, matrix, toggleBox, clearToggled, resetBoard }
+  return { cols, rows, matrix, toggleBox, resetBoard }
 }

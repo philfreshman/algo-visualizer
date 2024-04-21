@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { AlgorithmContext } from "@/lib/context"
+import { clearAll } from "@/lib/utils/reset"
 import { session } from "@/lib/utils/session"
 import { PauseIcon, PlayIcon } from "@radix-ui/react-icons"
 import { useContext, useEffect } from "react"
@@ -7,7 +8,7 @@ import { useContext, useEffect } from "react"
 export default function RunMenu() {
   const algorithmContext = useContext(AlgorithmContext)
   if (!algorithmContext) throw new Error("AlgorithmContext is missing")
-  const { startAlgorithm, stopAlgorithm, isCompleted, isRunning, setIsRunning } = algorithmContext
+  const { startAlgorithm, stopAlgorithm, isCompleted, isRunning, setIsRunning, setCompleted } = algorithmContext
 
   const setRun = () => {
     setIsRunning(true)
@@ -21,13 +22,22 @@ export default function RunMenu() {
     stopAlgorithm()
   }
 
+  const resetAll = () => {
+    setPause()
+    session.setItem("shouldTerminate", "true")
+    session.setItem("isRunning", "false")
+    clearAll()
+  }
+
   useEffect(() => {
     if (isCompleted) setIsRunning(false)
   }, [isCompleted])
 
   return (
     <>
-      <Button variant={"ghost"}>Reset</Button>
+      <Button variant={"ghost"} onClick={() => resetAll()}>
+        Reset
+      </Button>
       {!isRunning ? (
         <Button variant={"ghost"} onClick={() => setRun()}>
           <PlayIcon className="h-[1.2rem] w-[1.2rem] transition duration-200 ease-in-out" />

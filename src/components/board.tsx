@@ -3,9 +3,10 @@
 import Box from "@/components/ui/box"
 import { useCore } from "@/lib/core"
 import { keyShortcuts } from "@/lib/utils/key-shortcuts"
+import { clearToggled } from "@/lib/utils/reset"
 
 export default function Board() {
-  const { matrix, toggleBox, clearToggled, resetBoard } = useCore()
+  const { matrix, toggleBox, resetBoard } = useCore()
 
   keyShortcuts("c", clearToggled)
   keyShortcuts("x", resetBoard)
