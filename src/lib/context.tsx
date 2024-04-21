@@ -40,11 +40,10 @@ export const AlgorithmProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [shouldStop, setShouldStop] = useState(false)
 
   const searchAlgorithms: AlgorithmTypes = { DFS: "Depth first search", BFS: "Breath first search" }
-  const mazeAlgorithms: AlgorithmTypes = { CUSTOM: "Custom", RANDOM: "Random" }
+  const mazeAlgorithms: AlgorithmTypes = { CUSTOM: "Custom", LABIRYNT: "Labirynt" }
 
   const startAlgorithm = () => {
     if (isCompleted) {
-      console.log("run")
       setStartTrigger((prevState) => !prevState)
       setIsRunning(true)
       setIsCompleted(false)

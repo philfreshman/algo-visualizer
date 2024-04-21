@@ -27,7 +27,7 @@ export default function Index() {
         <MenubarTrigger>Grid</MenubarTrigger>
         <MenubarContent>
           {Object.entries(mazeAlgorithms).map(([key, value]) => (
-            <MenubarCheckboxItem checked={mazeGenerationAlgorithm == key} key={key} onClick={() => setMazeGenerationAlgorithm(key)}>
+            <MenubarCheckboxItem checked={mazeGenerationAlgorithm == key} key={key} onClick={() => setMazeGenerationAlgorithm(key)} disabled={key == "LABIRYNT"}>
               {value}
             </MenubarCheckboxItem>
           ))}
