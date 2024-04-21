@@ -1,10 +1,8 @@
+import { delay } from "@/lib/utils/helpers"
 import { local } from "@/lib/utils/local"
 import { session } from "@/lib/utils/session"
 
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
-
-const bfs = async (matrix: Matrix, start: Position, target: Position): Promise<Position[] | null> => {
-  const visited: Set<string> = new Set()
+const bfs = async (matrix: Matrix, visited: Position[], start: Position, target: Position): Promise<Position[] | null> => {
   const queue: Position[] = [start]
 
   while (queue.length > 0) {
@@ -12,20 +10,17 @@ const bfs = async (matrix: Matrix, start: Position, target: Position): Promise<P
 
     // Check if the current node is the target
     if (current.row === target.row && current.col === target.col) {
-      visited.add(`${current.row}:${current.col}`)
-      return Array.from(visited).map((v) => {
-        const [row, col] = v.split(":").map(Number)
-        return { row, col }
-      })
+      visited.push(current)
+      return visited
     }
 
     // Check if the current node is already visited
-    if (visited.has(`${current.row}:${current.col}`)) {
+    if (visited.some((v) => v.row === current.row && v.col === current.col)) {
       continue
     }
 
     // Mark the current node as visited
-    visited.add(`${current.row}:${current.col}`)
+    visited.push(current)
     let box = document.querySelector(`#B${current.row}\\:${current.col}`)
     if (box && !box.classList.contains("wall")) {
       box.classList.toggle("visited")

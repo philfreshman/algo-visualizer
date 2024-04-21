@@ -7,6 +7,8 @@ interface AlgorithmTypes {
   [key: string]: string
 }
 
+type MazeTypes = "CUSTOM" | "MAZE"
+
 interface AlgorithmState {
   isRunning: boolean
   isCompleted: boolean
@@ -22,6 +24,8 @@ interface AlgorithmState {
   startAlgorithm: () => void
   startTrigger: boolean
   stopAlgorithm: () => void
+  setCreateMazeTrigger: (value: boolean) => void
+  createMazeTrigger: boolean
 }
 
 export const AlgorithmContext = createContext<AlgorithmState | null>(null)
@@ -30,6 +34,7 @@ export const AlgorithmProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [pathfindingAlgorithm, setPathfindingAlgorithm] = useState(session.getItem("pathfindingAlgorithm") || "DFS")
   const [mazeGenerationAlgorithm, setMazeGenerationAlgorithm] = useState(session.getItem("mazeGenerationAlgorithm") || "CUSTOM")
   const [startTrigger, setStartTrigger] = useState(false)
+  const [createMazeTrigger, setCreateMazeTrigger] = useState<boolean>(false)
   const [isRunning, setIsRunning] = useState(false)
   const [isCompleted, setIsCompleted] = useState(true)
   const [shouldStop, setShouldStop] = useState(false)
@@ -50,9 +55,14 @@ export const AlgorithmProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     setIsRunning(false)
   }
 
+  // const onCreateMaze = () => {
+  //   setCreateMazeTrigger(true)
+  // }
+
   const setCompleted = () => {
     setIsCompleted(true)
     setIsRunning(false)
+    session.setItem("isRunning", "false")
     session.setItem("shouldTerminate", "false")
   }
 
@@ -81,6 +91,8 @@ export const AlgorithmProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         startTrigger,
         stopAlgorithm,
         setCompleted,
+        createMazeTrigger,
+        setCreateMazeTrigger,
       }}
     >
       {children}

@@ -1,13 +1,12 @@
 // DEPTH FIRST SEARCH
 // Helper function that returns a Promise that resolves after `ms` milliseconds
+import { delay } from "@/lib/utils/helpers"
 import { local } from "@/lib/utils/local"
+import { markEndAsVisited } from "@/lib/utils/reset"
 import { session } from "@/lib/utils/session"
-
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 const dfs = async (matrix: Matrix, visited: Position[], current: Position, target: Position): Promise<Position[] | null> => {
   if (session.getItem("shouldTerminate") === "true") {
-    console.log("terminated 1")
     return null // terminate the algorithm
   }
 
@@ -17,14 +16,15 @@ const dfs = async (matrix: Matrix, visited: Position[], current: Position, targe
   }
 
   // custom wall
-  if (matrix[current.row][current.col] === 1) {
+  if (matrix[current.row][current.col] === 1 || document.querySelector(`#B${current.row}\\:${current.col}`)?.classList.contains("toggled")) {
     return null
   }
 
   // target found
   if (current.row === target.row && current.col === target.col) {
-    visited.push({ row: current.row, col: current.col })
+    visited.push(current)
     session.setItem("isCompleted", "true")
+    markEndAsVisited()
     return visited
   }
 
@@ -38,7 +38,7 @@ const dfs = async (matrix: Matrix, visited: Position[], current: Position, targe
   // mark current position as visited
   visited.push({ row: current.row, col: current.col })
   let box = document.querySelector(`#B${current.row}\\:${current.col}`)
-  if (box && !box.classList.contains("wall")) {
+  if (box && !box.classList.contains("toggled")) {
     box!.classList.toggle("visited")
   }
 
@@ -58,7 +58,6 @@ const dfs = async (matrix: Matrix, visited: Position[], current: Position, targe
       shouldTerminate = session.getItem("shouldTerminate") === "true"
     }
     if (shouldTerminate) {
-      console.log("terminated 2")
       return null // terminate the algorithm
     }
   }
