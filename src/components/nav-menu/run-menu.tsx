@@ -8,7 +8,7 @@ import { useContext, useEffect } from "react"
 export default function RunMenu() {
   const algorithmContext = useContext(AlgorithmContext)
   if (!algorithmContext) throw new Error("AlgorithmContext is missing")
-  const { startAlgorithm, stopAlgorithm, isCompleted, isRunning, setIsRunning, setCompleted } = algorithmContext
+  const { startAlgorithm, stopAlgorithm, isCompleted, isRunning, setIsRunning, setIsCompleted } = algorithmContext
 
   const setRun = () => {
     setIsRunning(true)
@@ -23,9 +23,8 @@ export default function RunMenu() {
   }
 
   const resetAll = () => {
-    setPause()
     session.setItem("shouldTerminate", "true")
-    session.setItem("isRunning", "false")
+    setIsRunning(false)
     clearAll()
   }
 

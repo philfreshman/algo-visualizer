@@ -1,23 +1,61 @@
-import { memo } from "react"
+import { useState } from "react"
 
 interface BoxProps {
   id: string
   isToggled: boolean
   toggleBox: () => void
+  start?: boolean
+  end?: boolean
+  onDragStart: any
+  onDragEnd: any
+  onDragOver?: any // Optional for handling drag over within the box itself
+  dragging?: "start" | "end" | null // New prop to receive dragging state
 }
 
-const Box = memo<BoxProps>(({ id, isToggled, toggleBox }) => {
-  const handleMouseDown = () => toggleBox()
-  const handleMouseOver = (e: any) => e.buttons === 1 && toggleBox()
+const Box = ({ id, isToggled, toggleBox, start, end, onDragStart, onDragEnd, onDragOver, dragging }: BoxProps) => {
+  const [isDragging, setIsDragging] = useState(false)
+
+  const handleMouseDown = (e: any) => {
+    e.preventDefault()
+    if (start) {
+      onDragStart("start")
+    } else if (end) {
+      onDragStart("end")
+    } else {
+      handleOnClick(e)
+      onDragStart("wall")
+    }
+  }
+
+  const handleMouseUp = (e: any) => {
+    e.preventDefault()
+    onDragEnd()
+  }
+
+  const handleMouseOver = (e: any) => {
+    e.preventDefault()
+    onDragOver()
+  }
+
+  const handleOnClick = (e: any) => {
+    if (start || end) return
+    e.preventDefault()
+    toggleBox()
+  }
 
   return (
     <td
       id={id}
-      className={`md-min-w-[22px] h-[18px] min-w-[18px] border border-sky-500 sm:h-[20px] sm:min-w-[20px] md:h-[22px] lg:h-[24px] lg:min-w-[24px] ${isToggled ? "toggled" : ""}`}
+      className={`h-[18px] w-[18px] border border-sky-500 sm:h-[20px] sm:w-[20px] md:h-[22px] md:w-[22px] lg:h-[24px] lg:w-[24px] ${isToggled ? "toggled" : ""}`}
       onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
       onMouseOver={handleMouseOver}
-    />
+      style={{ cursor: start || end ? (isDragging ? "grabbing" : "grab") : "" }}
+    >
+      {id === "start" && "👾"}
+      {id === "end" && "💎"}
+    </td>
   )
-})
+}
 
 export default Box
