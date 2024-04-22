@@ -1,4 +1,4 @@
-import { delay } from "@/lib/utils/helpers"
+import { delay, shouldTerminate } from "@/lib/utils/helpers"
 import { local } from "@/lib/utils/local"
 import { session } from "@/lib/utils/session"
 
@@ -6,6 +6,9 @@ const bfs = async (matrix: Matrix, visited: Position[], start: Position, target:
   const queue: Position[] = [start]
 
   while (queue.length > 0) {
+    if (shouldTerminate()) {
+      return null
+    }
     const current = queue.shift()! // Get the first node in the queue
 
     // Check if the current node is the target
@@ -16,6 +19,11 @@ const bfs = async (matrix: Matrix, visited: Position[], start: Position, target:
 
     // Check if the current node is already visited
     if (visited.some((v) => v.row === current.row && v.col === current.col)) {
+      continue
+    }
+
+    // custom wall
+    if (matrix[current.row][current.col] === 1 || document.querySelector(`#B${current.row}\\:${current.col}`)?.classList.contains("toggled")) {
       continue
     }
 

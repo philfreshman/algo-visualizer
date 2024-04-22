@@ -1,4 +1,4 @@
-const clearAll = () => {
+const clearVisitedAndWalls = () => {
   document.querySelectorAll("td").forEach((el) => {
     el.classList.remove("toggled", "visited", "start-box", "end-box")
   })
@@ -24,4 +24,4 @@ const markStartAsVisited = () => {
   document.getElementById("start")?.classList.add("start-box")
 }
 
-export { clearAll, clearToggled, clearVisited, markEndAsVisited, markStartAsVisited }
+export { clearVisitedAndWalls, clearToggled, clearVisited, markEndAsVisited, markStartAsVisited }

@@ -5,24 +5,19 @@ import dfs from "@/lib/algorithms/dfs"
 import { clearVisited, markStartAsVisited } from "@/lib/utils/reset"
 import { session } from "@/lib/utils/session"
 import { useContext, useEffect, useState } from "react"
-import { AlgorithmContext } from "./context"
+import { AlgorithmContext } from "./coreContext"
 
-export function useCore() {
-  // config
-  const cols = 40
-  const rows = 30
-  const init = () =>
-    Array(rows)
-      .fill(0)
-      .map(() => Array(cols).fill(0))
+export function useRunner() {
+
+  const startPos: Position = { col: 8, row: 8 }
+  const endPos: Position = { col: 32, row: 22 }
 
   const algorithmContext = useContext(AlgorithmContext)
   if (!algorithmContext) throw new Error("AlgorithmContext is missing")
 
-  const { pathfindingAlgorithm, isRunning, startTrigger, setCompleted, setCreateMazeTrigger } = algorithmContext
-  const [start, setStart] = useState<Position>({ col: 8, row: 8 })
-  const [end, setEnd] = useState<Position>({ col: 32, row: 22 })
-  const [matrix, setMatrix] = useState<Matrix>(init())
+  const { pathfindingAlgorithm, isRunning, startTrigger, setCompleted, matrix, setMatrix } = algorithmContext
+  const [start, setStart] = useState<Position>(startPos)
+  const [end, setEnd] = useState<Position>(endPos)
 
   // handlers
   const run = async () => {
@@ -44,11 +39,6 @@ export function useCore() {
     setCompleted()
   }
 
-  const createMaze = () => {
-    generateMaze(matrix, 0, 0, cols, rows)
-    setCreateMazeTrigger(false)
-  }
-
   const toggleBox = (i: number, j: number) => {
     let box = document.querySelector(`#B${i}\\:${j}`)
     if (box && !box.classList.contains("wall")) {
@@ -61,11 +51,7 @@ export function useCore() {
     })
   }
 
-  const clearMatrix = () => {
-    setMatrix((prevMatrix: Matrix) => {
-      return prevMatrix.map((row) => row.map(() => 0))
-    })
-  }
+
 
   const resetBoard = async () => {
     session.setItem("shouldTerminate", "true")
@@ -77,11 +63,6 @@ export function useCore() {
     if (isRunning) run().then()
   }, [startTrigger])
 
-  // useEffect(() => {
-  //   if (createMazeTrigger) {
-  //     createMaze()
-  //   }
-  // }, [createMazeTrigger])
 
-  return { cols, rows, matrix, start, end, toggleBox, resetBoard, setStart, setEnd, createMaze }
+  return { matrix, start, end, toggleBox, resetBoard, setStart, setEnd }
 }

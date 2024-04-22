@@ -1,13 +1,14 @@
 // DEPTH FIRST SEARCH
 // Helper function that returns a Promise that resolves after `ms` milliseconds
-import { delay } from "@/lib/utils/helpers"
+import { delay, shouldTerminate } from "@/lib/utils/helpers"
 import { local } from "@/lib/utils/local"
 import { markEndAsVisited } from "@/lib/utils/reset"
 import { session } from "@/lib/utils/session"
 
 const dfs = async (matrix: Matrix, visited: Position[], current: Position, target: Position): Promise<Position[] | null> => {
-  if (session.getItem("shouldTerminate") === "true") {
-    return null // terminate the algorithm
+
+  if (shouldTerminate()) {
+    return null;
   }
 
   // walls
@@ -50,14 +51,14 @@ const dfs = async (matrix: Matrix, visited: Position[], current: Position, targe
 
   // pause / resume
   let isRunning = session.getItem("isRunning") === "false"
-  let shouldTerminate = session.getItem("shouldTerminate") === "true"
-  if (isRunning || shouldTerminate) {
-    while (isRunning && !shouldTerminate) {
+  let terminate = shouldTerminate()
+  if (isRunning || terminate) {
+    while (isRunning && !terminate) {
       await delay(100)
       isRunning = session.getItem("isRunning") === "false"
-      shouldTerminate = session.getItem("shouldTerminate") === "true"
+      terminate = shouldTerminate()
     }
-    if (shouldTerminate) {
+    if (terminate) {
       return null // terminate the algorithm
     }
   }

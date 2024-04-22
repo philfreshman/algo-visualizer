@@ -1,14 +1,16 @@
 import { Button } from "@/components/ui/button"
-import { AlgorithmContext } from "@/lib/context"
-import { clearAll } from "@/lib/utils/reset"
+import { AlgorithmContext } from "@/lib/coreContext"
+import { clearVisitedAndWalls } from "@/lib/utils/reset"
 import { session } from "@/lib/utils/session"
 import { PauseIcon, PlayIcon } from "@radix-ui/react-icons"
 import { useContext, useEffect } from "react"
 
 export default function RunMenu() {
   const algorithmContext = useContext(AlgorithmContext)
+
   if (!algorithmContext) throw new Error("AlgorithmContext is missing")
-  const { startAlgorithm, stopAlgorithm, isCompleted, isRunning, setIsRunning, setIsCompleted } = algorithmContext
+  const { startAlgorithm, stopAlgorithm, isCompleted, isRunning, setIsRunning, clearMatrixWalls, setIsCompleted } =
+    algorithmContext
 
   const setRun = () => {
     setIsRunning(true)
@@ -23,9 +25,11 @@ export default function RunMenu() {
   }
 
   const resetAll = () => {
-    session.setItem("shouldTerminate", "true")
+    if (!isCompleted) session.setItem("shouldTerminate", "true")
     setIsRunning(false)
-    clearAll()
+    setIsCompleted(true)
+    clearVisitedAndWalls()
+    clearMatrixWalls()
   }
 
   useEffect(() => {

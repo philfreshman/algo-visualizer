@@ -1,13 +1,13 @@
 "use client"
 
 import Box from "@/components/ui/box"
-import { useCore } from "@/lib/core"
+import { useRunner } from "@/lib/runner"
 import { keyShortcuts } from "@/lib/utils/key-shortcuts"
 import { clearToggled } from "@/lib/utils/reset"
 import { memo, useState } from "react"
 
 const Board = memo(() => {
-  const { matrix, toggleBox, resetBoard, start, end, setStart, setEnd } = useCore()
+  const { matrix, toggleBox, resetBoard, start, end, setStart, setEnd } = useRunner()
   const [dragging, setDragging] = useState<null | "start" | "end" | "wall">(null)
 
   keyShortcuts("c", clearToggled)
