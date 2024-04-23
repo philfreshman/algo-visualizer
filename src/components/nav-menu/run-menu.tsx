@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { AlgorithmContext } from "@/lib/coreContext"
 import { clearVisitedAndWalls } from "@/lib/utils/reset"
-import { session } from "@/lib/utils/session"
+import { storage } from "@/lib/utils/storage"
 import { PauseIcon, PlayIcon } from "@radix-ui/react-icons"
 import { useContext, useEffect } from "react"
 
@@ -14,18 +14,18 @@ export default function RunMenu() {
 
   const setRun = () => {
     setIsRunning(true)
-    session.setItem("isRunning", "true") // continue execution inside algorithm
+    storage.setItem("isRunning", "true") // continue execution inside algorithm
     if (isCompleted) startAlgorithm()
   }
 
   const setPause = () => {
     setIsRunning(false)
-    session.setItem("isRunning", "false") // pause execution inside algorithm
+    storage.setItem("isRunning", "false") // pause execution inside algorithm
     stopAlgorithm()
   }
 
   const resetAll = () => {
-    if (!isCompleted) session.setItem("shouldTerminate", "true")
+    if (!isCompleted) storage.setItem("shouldTerminate", "true")
     setIsRunning(false)
     setIsCompleted(true)
     clearVisitedAndWalls()

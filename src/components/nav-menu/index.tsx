@@ -4,7 +4,7 @@ import { ThemeMenu } from "@/components/nav-menu/theme-menu"
 import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar"
 import { AlgorithmContext } from "@/lib/coreContext"
 import { clearVisited } from "@/lib/utils/reset"
-import { session } from "@/lib/utils/session"
+import { storage } from "@/lib/utils/storage"
 import { useContext } from "react"
 
 export default function Index() {
@@ -23,7 +23,7 @@ export default function Index() {
   } = algorithmContext
 
   const onPathfindingChange = (key: string) => {
-    if (!isCompleted) session.setItem("shouldTerminate", "true")
+    if (!isCompleted) storage.setItem("shouldTerminate", "true")
     setIsRunning(false)
     setIsCompleted(true)
     setPathfindingAlgorithm(key)
