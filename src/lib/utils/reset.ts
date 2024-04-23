@@ -17,7 +17,7 @@ const clearToggled = () => {
 }
 
 const markEndAsVisited = () => {
-  document.getElementById("end")?.firstElementChild?.classList.add("end-box")
+  document.getElementById("end")?.classList.add("end-box")
 }
 
 const markStartAsVisited = () => {

@@ -52,8 +52,7 @@ const Board = memo(() => {
   }
 
   return (
-    <div className={"flex rotate-90 transform justify-center md:rotate-0"}>
-      {/*<table id="table">*/}
+    <div className={"flex rotate-90 transform justify-center bg-red-400 md:rotate-0"}>
       <table id="table" style={{ cursor: "crosshair" }}>
         <tbody>
           {matrix.map((row, i) => (

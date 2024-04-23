@@ -1,3 +1,4 @@
+import { AlienIcon, DiamondIcon } from "@/components/ui/icons"
 import { memo, useState } from "react"
 
 interface BoxProps {
@@ -52,8 +53,8 @@ const Box = memo(({ id, isToggled, toggleBox, start, end, onDragStart, onDragEnd
       onMouseOver={handleMouseOver}
       style={{ cursor: start || end ? (isDragging ? "grabbing" : "grab") : "" }}
     >
-      {id === "start" && <div className="emoji alien -rotate-90 md:rotate-0" />}
-      {id === "end" && <div className="emoji diamond -rotate-90 md:rotate-0" />}
+      {id === "start" && <AlienIcon className={"-rotate-90 md:rotate-0"} />}
+      {id === "end" && <DiamondIcon className={"-rotate-90 md:rotate-0"} />}
     </td>
   )
 })
