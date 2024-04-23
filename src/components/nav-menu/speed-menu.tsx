@@ -1,6 +1,6 @@
 import { MenubarContent, MenubarItem, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar"
 import { Slider } from "@/components/ui/slider"
-import { local } from "@/lib/utils/local"
+import { local } from "@/lib/utils/storage"
 import { useEffect, useState } from "react"
 
 export const SpeedMenu = () => {
@@ -27,7 +27,14 @@ export const SpeedMenu = () => {
       <MenubarTrigger>Speed</MenubarTrigger>
       <MenubarContent align={"center"}>
         <MenubarItem>
-          <Slider defaultValue={[speedScale - delay]} min={0} max={speedScale} name={"slow"} onValueChange={(num) => onSetDelay(num[0])} step={1} />
+          <Slider
+            defaultValue={[speedScale - delay]}
+            min={0}
+            max={speedScale}
+            name={"slow"}
+            onValueChange={(num) => onSetDelay(num[0])}
+            step={1}
+          />
         </MenubarItem>
       </MenubarContent>
     </MenubarMenu>

@@ -1,14 +1,12 @@
 // DEPTH FIRST SEARCH
-// Helper function that returns a Promise that resolves after `ms` milliseconds
-import { delay, shouldTerminate } from "@/lib/utils/helpers"
-import { local } from "@/lib/utils/local"
+
+import { delay, pauseResumeOrTerminate, shouldTerminate } from "@/lib/utils/helpers"
 import { markEndAsVisited } from "@/lib/utils/reset"
-import { session } from "@/lib/utils/session"
+import { local, storage } from "@/lib/utils/storage"
 
-const dfs = async (matrix: Matrix, visited: Position[], current: Position, target: Position): Promise<Position[] | null> => {
-
+export const dfs = async (matrix: Matrix, visited: Position[], current: Position, target: Position): Promise<Position[] | null> => {
   if (shouldTerminate()) {
-    return null;
+    return null
   }
 
   // walls
@@ -17,6 +15,7 @@ const dfs = async (matrix: Matrix, visited: Position[], current: Position, targe
   }
 
   // custom wall
+
   if (matrix[current.row][current.col] === 1 || document.querySelector(`#B${current.row}\\:${current.col}`)?.classList.contains("toggled")) {
     return null
   }
@@ -24,7 +23,7 @@ const dfs = async (matrix: Matrix, visited: Position[], current: Position, targe
   // target found
   if (current.row === target.row && current.col === target.col) {
     visited.push(current)
-    session.setItem("isCompleted", "true")
+    storage.setItem("isCompleted", "true")
     markEndAsVisited()
     return visited
   }
@@ -38,7 +37,7 @@ const dfs = async (matrix: Matrix, visited: Position[], current: Position, targe
 
   // mark current position as visited
   visited.push({ row: current.row, col: current.col })
-  let box = document.querySelector(`#B${current.row}\\:${current.col}`)
+  const box = document.querySelector(`#B${current.row}\\:${current.col}`)
   if (box && !box.classList.contains("toggled")) {
     box!.classList.toggle("visited")
   }
@@ -49,18 +48,9 @@ const dfs = async (matrix: Matrix, visited: Position[], current: Position, targe
   // speed
   await delay(Number(local.getItem("delay")))
 
-  // pause / resume
-  let isRunning = session.getItem("isRunning") === "false"
-  let terminate = shouldTerminate()
-  if (isRunning || terminate) {
-    while (isRunning && !terminate) {
-      await delay(100)
-      isRunning = session.getItem("isRunning") === "false"
-      terminate = shouldTerminate()
-    }
-    if (terminate) {
-      return null // terminate the algorithm
-    }
+  // pause / resume / terminate
+  if ((await pauseResumeOrTerminate()) === null) {
+    return null // terminate the algorithm
   }
 
   // explore neighbors
@@ -87,5 +77,3 @@ const dfs = async (matrix: Matrix, visited: Position[], current: Position, targe
 
   return null
 }
-
-export default dfs

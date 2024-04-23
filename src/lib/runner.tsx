@@ -1,14 +1,13 @@
 "use client"
 
-import bfs from "@/lib/algorithms/bfs"
-import dfs from "@/lib/algorithms/dfs"
+import { bfs } from "@/lib/algorithms/bfs"
+import { dfs } from "@/lib/algorithms/dfs"
 import { clearVisited, markStartAsVisited } from "@/lib/utils/reset"
-import { session } from "@/lib/utils/session"
+import { storage } from "@/lib/utils/storage"
 import { useContext, useEffect, useState } from "react"
 import { AlgorithmContext } from "./coreContext"
 
 export function useRunner() {
-
   const startPos: Position = { col: 8, row: 8 }
   const endPos: Position = { col: 32, row: 22 }
 
@@ -51,18 +50,15 @@ export function useRunner() {
     })
   }
 
-
-
   const resetBoard = async () => {
-    session.setItem("shouldTerminate", "true")
-    session.setItem("isRunning", "false")
+    storage.setItem("shouldTerminate", "true")
+    storage.setItem("isRunning", "false")
     clearVisited()
   }
 
   useEffect(() => {
     if (isRunning) run().then()
   }, [startTrigger])
-
 
   return { matrix, start, end, toggleBox, resetBoard, setStart, setEnd }
 }

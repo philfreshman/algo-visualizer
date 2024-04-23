@@ -1,8 +1,8 @@
 "use client"
 
-import { session } from "@/lib/utils/session"
-import React, { createContext, useEffect, useState } from "react"
 import generateMaze from "@/lib/algorithms/maze"
+import { storage } from "@/lib/utils/storage"
+import React, { createContext, useEffect, useState } from "react"
 
 interface AlgorithmTypes {
   [key: string]: string
@@ -33,7 +33,6 @@ interface AlgorithmState {
 export const AlgorithmContext = createContext<AlgorithmState | null>(null)
 
 export const AlgorithmProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-
   // config
   const cols = 40
   const rows = 30
@@ -44,13 +43,12 @@ export const AlgorithmProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const init = () => Array(rows).fill(0).map(() => Array(cols).fill(0))
 
   const [matrix, setMatrix] = useState<Matrix>(init())
-  const [pathfindingAlgorithm, setPathfindingAlgorithm] = useState(session.getItem("pathfindingAlgorithm") || "DFS")
-  const [mazeGenerationAlgorithm, setMazeGenerationAlgorithm] = useState(session.getItem("mazeGenerationAlgorithm") || "CUSTOM")
+  const [pathfindingAlgorithm, setPathfindingAlgorithm] = useState(storage.getItem("pathfindingAlgorithm") || "DFS")
+  const [mazeGenerationAlgorithm, setMazeGenerationAlgorithm] = useState(storage.getItem("mazeGenerationAlgorithm") || "CUSTOM")
   const [startTrigger, setStartTrigger] = useState(false)
   const [createMazeTrigger, setCreateMazeTrigger] = useState<boolean>(false)
   const [isRunning, setIsRunning] = useState(false)
   const [isCompleted, setIsCompleted] = useState(true)
-
 
   const startAlgorithm = () => {
     if (isCompleted) {
@@ -71,8 +69,8 @@ export const AlgorithmProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const setCompleted = () => {
     setIsCompleted(true)
     setIsRunning(false)
-    session.setItem("isRunning", "false")
-    session.setItem("shouldTerminate", "false")
+    storage.setItem("isRunning", "false")
+    storage.setItem("shouldTerminate", "false")
   }
 
   const clearMatrixWalls = () => {
@@ -82,11 +80,11 @@ export const AlgorithmProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   }
 
   useEffect(() => {
-    session.setItem("pathfindingAlgorithm", pathfindingAlgorithm)
+    storage.setItem("pathfindingAlgorithm", pathfindingAlgorithm)
   }, [pathfindingAlgorithm])
 
   useEffect(() => {
-    session.setItem("mazeGenerationAlgorithm", mazeGenerationAlgorithm)
+    storage.setItem("mazeGenerationAlgorithm", mazeGenerationAlgorithm)
   }, [mazeGenerationAlgorithm])
 
   return (

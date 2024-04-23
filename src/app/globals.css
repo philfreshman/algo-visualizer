@@ -129,12 +129,35 @@ html.dark{
 }
 
 
+@keyframes blink {
+  0% { background-color: var(--accent); }
+  50% { background-color: violet; }
+  100% { background-color: var(--accent); }
+}
 
 .end-box {
-  background-color: var(--violet);
+  animation: blink 150ms ease-in-out infinite;
 }
 
 .start-box {
   background-color: var(--accent);
 }
+
+
+.emoji {
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: auto;
+}
+
+.emoji.alien {
+  background-image: url('/icons/alien.png')
+}
+
+.emoji.diamond {
+  background-image: url('/icons/diamond.png')
+}
+
+
 

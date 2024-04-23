@@ -1,8 +1,9 @@
-import { delay, shouldTerminate } from "@/lib/utils/helpers"
-import { local } from "@/lib/utils/local"
-import { session } from "@/lib/utils/session"
+// BREATH FIRST SEARCH
 
-const bfs = async (matrix: Matrix, visited: Position[], start: Position, target: Position): Promise<Position[] | null> => {
+import { delay, pauseResumeOrTerminate, shouldTerminate } from "@/lib/utils/helpers"
+import { local } from "@/lib/utils/storage"
+
+export const bfs = async (matrix: Matrix, visited: Position[], start: Position, target: Position): Promise<Position[] | null> => {
   const queue: Position[] = [start]
 
   while (queue.length > 0) {
@@ -29,7 +30,7 @@ const bfs = async (matrix: Matrix, visited: Position[], start: Position, target:
 
     // Mark the current node as visited
     visited.push(current)
-    let box = document.querySelector(`#B${current.row}\\:${current.col}`)
+    const box = document.querySelector(`#B${current.row}\\:${current.col}`)
     if (box && !box.classList.contains("wall")) {
       box.classList.toggle("visited")
     }
@@ -43,18 +44,20 @@ const bfs = async (matrix: Matrix, visited: Position[], start: Position, target:
     ]
 
     for (const neighbor of neighbors) {
-      if (neighbor.row >= 0 && neighbor.row < matrix.length && neighbor.col >= 0 && neighbor.col < matrix[0].length && matrix[neighbor.row][neighbor.col] !== 1) {
+      if (
+        neighbor.row >= 0 &&
+        neighbor.row < matrix.length &&
+        neighbor.col >= 0 &&
+        neighbor.col < matrix[0].length &&
+        matrix[neighbor.row][neighbor.col] !== 1
+      ) {
         queue.push(neighbor)
       }
     }
 
-    // pause / resume
-    let isRunning = session.getItem("isRunning") === "false"
-    if (isRunning) {
-      while (isRunning) {
-        await delay(100)
-        isRunning = session.getItem("isRunning") === "false"
-      }
+    // pause / resume / terminate
+    if ((await pauseResumeOrTerminate()) === null) {
+      return null // terminate the algorithm
     }
 
     await delay(Number(local.getItem("delay")))
@@ -62,5 +65,3 @@ const bfs = async (matrix: Matrix, visited: Position[], start: Position, target:
 
   return null
 }
-
-export default bfs

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { memo, useState } from "react"
 
 interface BoxProps {
   id: string
@@ -12,7 +12,7 @@ interface BoxProps {
   dragging?: "start" | "end" | null // New prop to receive dragging state
 }
 
-const Box = ({ id, isToggled, toggleBox, start, end, onDragStart, onDragEnd, onDragOver, dragging }: BoxProps) => {
+const Box = memo(({ id, isToggled, toggleBox, start, end, onDragStart, onDragEnd, onDragOver }: BoxProps) => {
   const [isDragging, setIsDragging] = useState(false)
 
   const handleMouseDown = (e: any) => {
@@ -46,16 +46,16 @@ const Box = ({ id, isToggled, toggleBox, start, end, onDragStart, onDragEnd, onD
   return (
     <td
       id={id}
-      className={`h-[18px] w-[18px] border border-sky-500 sm:h-[20px] sm:w-[20px] md:h-[22px] md:w-[22px] lg:h-[24px] lg:w-[24px] ${isToggled ? "toggled" : ""}`}
+      className={`h-[18px] w-[18px] border border-sky-500 p-0 sm:h-[20px] sm:w-[20px] md:h-[22px] md:w-[22px] lg:h-[24px] lg:w-[24px] ${isToggled ? "toggled" : ""}`}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onMouseOver={handleMouseOver}
       style={{ cursor: start || end ? (isDragging ? "grabbing" : "grab") : "" }}
     >
-      {id === "start" && "👾"}
-      {id === "end" && "💎"}
+      {id === "start" && <div className="emoji alien -rotate-90 md:rotate-0" />}
+      {id === "end" && <div className="emoji diamond -rotate-90 md:rotate-0" />}
     </td>
   )
-}
+})
 
 export default Box
