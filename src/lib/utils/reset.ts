@@ -5,6 +5,7 @@ const clearVisitedAndWalls = () => {
 }
 
 const clearVisited = () => {
+  console.log("clearVisited")
   document.querySelectorAll("td").forEach((el) => {
     el.classList.remove("visited", "start-box", "end-box")
   })
@@ -17,7 +18,8 @@ const clearToggled = () => {
 }
 
 const markEndAsVisited = () => {
-  document.getElementById("end")?.firstElementChild?.classList.add("end-box")
+  console.log("markEndAsVisited")
+  document.getElementById("end")?.classList.add("end-box")
 }
 
 const markStartAsVisited = () => {

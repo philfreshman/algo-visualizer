@@ -1,7 +1,8 @@
 // BREATH FIRST SEARCH
 
 import { delay, pauseResumeOrTerminate, shouldTerminate } from "@/lib/utils/helpers"
-import { local } from "@/lib/utils/storage"
+import { markEndAsVisited } from "@/lib/utils/reset"
+import { local, storage } from "@/lib/utils/storage"
 
 export const bfs = async (matrix: Matrix, visited: Position[], start: Position, target: Position): Promise<Position[] | null> => {
   const queue: Position[] = [start]
@@ -14,7 +15,9 @@ export const bfs = async (matrix: Matrix, visited: Position[], start: Position, 
 
     // Check if the current node is the target
     if (current.row === target.row && current.col === target.col) {
+      storage.setItem("isCompleted", "true")
       visited.push(current)
+      markEndAsVisited()
       return visited
     }
 
