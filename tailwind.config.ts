@@ -6,12 +6,20 @@ const config = {
   prefix: "",
   theme: {
     screens: {
-      xxs: "400px",
-      xs: "500px",
-      sm: "850px", // Default for small screens
-      md: "920px", // Default for medium screens
+      sm: "640px", // Default for small screens
+      md: "768px", // Default for medium screens
       lg: "1024px", // Default for large screens
       xl: "1280px", // Default for extra-large screens
+
+      // boxes
+      box24: "960px", // lg
+      box23: "920px",
+      box22: "880px", // md
+      box21: "840px",
+      box20: "800px", // sm
+      box19: "760px", // xs
+      box18: "720px",
+      box17: "680px", // xxs
     },
     container: {
       center: true,
