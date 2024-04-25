@@ -5,6 +5,7 @@ const clearVisitedAndWalls = () => {
 }
 
 const clearVisited = () => {
+  console.log("clearVisited")
   document.querySelectorAll("td").forEach((el) => {
     el.classList.remove("visited", "start-box", "end-box")
   })

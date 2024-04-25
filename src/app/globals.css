@@ -121,14 +121,6 @@ h1 {
   animation: blink 150ms ease-in-out infinite;
 }
 
-.flip-vertical {
-  --transform-scale-y: -1;
-}
-
-.flip-vertical-none {
-  --transform-scale-y: 0;
-}
-
 table{
   border-spacing: 0;
   border-collapse: collapse;

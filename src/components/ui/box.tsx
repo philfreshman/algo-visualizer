@@ -1,3 +1,4 @@
+import { AlienIcon, DiamondIcon } from "@/components/ui/icons"
 import { memo, useState } from "react"
 import { AlienIcon, DiamondIcon } from "./icons"
 
@@ -12,6 +13,8 @@ interface BoxProps {
   onDragOver?: any // Optional for handling drag over within the box itself
   dragging?: "start" | "end" | null // New prop to receive dragging state
 }
+
+const alien = () => {}
 
 const Box = memo(({ id, isToggled, toggleBox, start, end, onDragStart, onDragEnd, onDragOver }: BoxProps) => {
   const [isDragging, setIsDragging] = useState(false)
