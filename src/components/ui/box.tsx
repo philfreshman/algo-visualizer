@@ -13,8 +13,6 @@ interface BoxProps {
   dragging?: "start" | "end" | null // New prop to receive dragging state
 }
 
-const alien = () => {}
-
 const Box = memo(({ id, isToggled, toggleBox, start, end, onDragStart, onDragEnd, onDragOver }: BoxProps) => {
   const [isDragging, setIsDragging] = useState(false)
 
