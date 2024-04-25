@@ -1,11 +1,11 @@
 import RunMenu from "@/components/nav-menu/run-menu"
-import { SpeedMenu } from "@/components/nav-menu/speed-menu"
 import { ThemeMenu } from "@/components/nav-menu/theme-menu"
 import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar"
 import { AlgorithmContext } from "@/lib/coreContext"
 import { clearVisited } from "@/lib/utils/reset"
 import { storage } from "@/lib/utils/storage"
 import { useContext } from "react"
+import { SpeedMenu } from "./speed-menu"
 
 export default function Index() {
   const algorithmContext = useContext(AlgorithmContext)
@@ -36,11 +36,7 @@ export default function Index() {
         <MenubarTrigger>Algorithm</MenubarTrigger>
         <MenubarContent>
           {Object.entries(searchAlgorithms).map(([key, value]) => (
-            <MenubarCheckboxItem
-              checked={pathfindingAlgorithm == key}
-              key={key}
-              onClick={() => onPathfindingChange(key)}
-            >
+            <MenubarCheckboxItem checked={pathfindingAlgorithm == key} key={key} onClick={() => onPathfindingChange(key)}>
               {value}
             </MenubarCheckboxItem>
           ))}

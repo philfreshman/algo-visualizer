@@ -18,7 +18,6 @@ const clearToggled = () => {
 }
 
 const markEndAsVisited = () => {
-  console.log("markEndAsVisited")
   document.getElementById("end")?.classList.add("end-box")
 }
 
