@@ -4,16 +4,7 @@ import { FC } from "react"
 
 const robotoCondensed = Roboto_Condensed({ weight: "800", style: "italic", subsets: ["latin"] })
 
-interface HeaderProps {}
-
-export const Header: FC<HeaderProps> = ({}) => {
-  // glitch - colors
-  const a = "#071325"
-  const b = "#122C59"
-  const c = "#39FBDB"
-  const d = "#FD10F5"
-  const e = "#563193"
-
+const Header: FC = () => {
   return (
     <div className={"flex h-40 w-full items-center justify-center"}>
       <div
@@ -24,9 +15,12 @@ export const Header: FC<HeaderProps> = ({}) => {
         <div className={"flex h-1/2 items-center justify-center "}>
           <h1
             className={
-              `text-shadow-header select-none text-[50px] text-[#39FBDB] outline-amber-500 drop-shadow-[1px_1px_1px_rgba(0,0,0,0.5)] ` +
+              `select-none text-[50px] text-[var(--glitch-green)] outline-amber-500 drop-shadow-[1px_1px_1px_rgba(0,0,0,0.5)] ` +
               robotoCondensed.className
             }
+            style={{
+              textShadow: "var(--glitch-rose) 1.5px 1.5px 0,var(--glitch-violet) 3px 3px 0,var(--glitch-blue) 4.5px 4.5px 1px",
+            }}
           >
             ALGO-VISUALIZER
           </h1>
@@ -38,3 +32,5 @@ export const Header: FC<HeaderProps> = ({}) => {
     </div>
   )
 }
+
+export default Header

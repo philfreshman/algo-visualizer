@@ -1,5 +1,5 @@
 "use client"
-import { Header } from "@/components/header"
+import Header from "@/components/header"
 import { AlgorithmProvider } from "@/lib/coreContext"
 import { ThemeProvider } from "next-themes"
 import { Inter } from "next/font/google"
