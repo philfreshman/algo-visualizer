@@ -9,6 +9,10 @@ export const ThemeMenu = () => {
   const setThemeClick = (theme: "light" | "dark") => {
     setTheme(theme)
     setCurrentTheme(theme)
+    const el = document.getElementsByTagName("h1")[0]
+    console.log("el", el)
+    el.click()
+    el.focus()
   }
 
   return (

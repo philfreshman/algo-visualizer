@@ -51,26 +51,22 @@ const Board = memo(() => {
     }
   }
 
-  // 24px - 960 px // lg
+  // 24px - 960 px
   // 23px - 920 px
-  // 22px - 880 px // md
+  // 22px - 880 px
   // 21px - 840 px
-  // 20px - 800 px // sm
-  // 19px - 760 px // xs
+  // 20px - 800 px
+  // 19px - 760 px
   // 18px - 720 px
-  // 17px - 680 px // xxs
+  // 17px - 680 px
 
   const tableSize = (): string => {
     return "aspect-[4/3] w-full box17:w-[680px] box19:w-[760px] box20:w-[800px] box22:w-[880px] box23:w-[920px] box24:w-[961px]"
   }
 
-  const bg = (): string => {
-    return "box17:bg-blue-400 box18:bg-red-400 box19:bg-yellow-400 box20:bg-pink-200 box21:bg-blue-400 box22:bg-gray-400 box23:bg-red-400 box24:bg-green-400"
-  }
-
   return (
-    <div className={`box17:rotate-0 flex rotate-90 transform justify-center ${tableSize()} ${bg()}} `}>
-      <table id="table" className={"h-full w-full"} style={{ cursor: "crosshair" }}>
+    <div className={` flex rotate-90 transform justify-center box17:rotate-0 ${tableSize()}}} `}>
+      <table id="table" className={"h-full w-full "} style={{ cursor: "crosshair" }}>
         <tbody>
           {matrix.map((row, i) => (
             <tr key={i}>
@@ -91,7 +87,6 @@ const Board = memo(() => {
           ))}
         </tbody>
       </table>
-      {/*</div>*/}
     </div>
   )
 })

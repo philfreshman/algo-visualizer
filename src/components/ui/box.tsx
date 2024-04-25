@@ -1,4 +1,5 @@
 import { memo, useState } from "react"
+import { AlienIcon, DiamondIcon } from "./icons"
 
 interface BoxProps {
   id: string
@@ -46,15 +47,16 @@ const Box = memo(({ id, isToggled, toggleBox, start, end, onDragStart, onDragEnd
   return (
     <td
       id={id}
-      // className={`h-[18px] w-[18px] border border-sky-500 p-0 sm:h-[20px] sm:w-[20px] md:h-[22px] md:w-[22px] lg:h-[24px] lg:w-[24px] ${isToggled ? "toggled" : ""}`}
-      className={`border border-sky-500 p-0 ${isToggled ? "toggled" : ""}`}
+      className={`aspect-square h-3 w-3 border border-sky-500 p-0 ${isToggled ? "toggled" : ""}`}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onMouseOver={handleMouseOver}
       style={{ cursor: start || end ? (isDragging ? "grabbing" : "grab") : "" }}
     >
-      {/*{id === "start" && <AlienIcon className={"-rotate-90 md:rotate-0"} />}*/}
-      {/*{id === "end" && <DiamondIcon className={"-rotate-90 md:rotate-0"} />}*/}
+      <div className={"flex aspect-square h-full w-full items-center justify-center"}>
+        {id === "end" && <DiamondIcon className={" -rotate-90 md:rotate-0"} />}
+        {id === "start" && <AlienIcon className={"-rotate-90 md:rotate-0"} />}
+      </div>
     </td>
   )
 })
