@@ -1,10 +1,10 @@
 "use client"
 
-import Box from "@/components/ui/box"
 import { useRunner } from "@/lib/runner"
 import { keyShortcuts } from "@/lib/utils/key-shortcuts"
 import { clearToggled } from "@/lib/utils/reset"
 import { memo, useState } from "react"
+import Box from "./ui/box"
 
 const Board = memo(() => {
   const { matrix, toggleBox, resetBoard, start, end, setStart, setEnd } = useRunner()
@@ -51,15 +51,26 @@ const Board = memo(() => {
     }
   }
 
+  // 24px - 960 px
+  // 23px - 920 px
+  // 22px - 880 px
+  // 21px - 840 px
+  // 20px - 800 px
+  // 19px - 760 px
+  // 18px - 720 px
+  // 17px - 680 px
+
+  const tableSize = (): string => {
+    return "aspect-[4/3] w-full box17:w-[680px] box19:w-[760px] box20:w-[800px] box22:w-[880px] box23:w-[920px] box24:w-[961px]"
+  }
+
   return (
-    <div className={"flex rotate-90 transform justify-center md:rotate-0"}>
-      {/*<table id="table">*/}
-      <table id="table" style={{ cursor: "crosshair" }}>
+    <div className={` flex rotate-90 transform justify-center box17:rotate-0 ${tableSize()}}} `}>
+      <table id="table" className={"h-full w-full "} style={{ cursor: "crosshair" }}>
         <tbody>
           {matrix.map((row, i) => (
             <tr key={i}>
-              {row.map((value, j) =>
-                // prettier-ignore
+              {row.map((value, j) => (
                 <Box
                   id={getId({ row: i, col: j })}
                   key={j}
@@ -70,8 +81,8 @@ const Board = memo(() => {
                   onDragStart={handleDragStart}
                   onDragEnd={handleDragEnd}
                   onDragOver={() => handleDragOver(i, j)}
-                />,
-              )}
+                />
+              ))}
             </tr>
           ))}
         </tbody>

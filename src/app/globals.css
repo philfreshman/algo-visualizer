@@ -1,5 +1,7 @@
-/*https://fonts.google.com/specimen/Roboto+Condensed?preview.text=ALGO-VISUALIZER*/
-/* styles/fonts.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: 'RobotoCondensed';
   src: url('/public/fonts/RobotoCondensed-SemiBoldItalic.ttf');
@@ -8,149 +10,124 @@
   font-display: swap;
 }
 
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
 
-  @layer base {
-    :root {
-
-      --red: red;
-      --background: white;
-      --foreground: 240 10% 3.9%;
-
-      --card: 0 0% 100%;
-      --card-foreground: 240 10% 3.9%;
-
-      --popover: 0 0% 100%;
-      --popover-foreground: 240 10% 3.9%;
-
-      --primary: 240 5.9% 10%;
-      --primary-foreground: 0 0% 98%;
-
-      --secondary: 240 4.8% 95.9%;
-      --secondary-foreground: 240 5.9% 10%;
-
-      --muted: 240 4.8% 95.9%;
-      --muted-foreground: 240 3.8% 46.1%;
-
-      --accent: #ACE9EC;
-      --accent-foreground: 240 5.9% 10%;
-
-      --violet: violet;
-
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 0 0% 98%;
-
-      --border: 240 5.9% 90%;
-      --input: 240 5.9% 90%;
-      --ring: 240 10% 3.9%;
-
-      --radius: 0.5rem;
-    }
-
-    .dark {
-      --background: #202225;
-      --foreground: 0 0% 98%;
-
-      --card: 240 10% 3.9%;
-      --card-foreground: 0 0% 98%;
-
-      --popover: 240 10% 3.9%;
-      --popover-foreground: 0 0% 98%;
-
-      --primary: 0 0% 98%;
-      --primary-foreground: 240 5.9% 10%;
-
-      --secondary: 240 3.7% 15.9%;
-      --secondary-foreground: 0 0% 98%;
-
-      --muted: 240 3.7% 15.9%;
-      --muted-foreground: 240 5% 64.9%;
-
-      --accent-foreground: 0 0% 98%;
-
-      --destructive: 0 62.8% 30.6%;
-      --destructive-foreground: 0 0% 98%;
-
-      --border: 240 3.7% 15.9%;
-      --input: 240 3.7% 15.9%;
-      --ring: 240 4.9% 83.9%;
-    }
-  }
-
-  @layer base {
-    * {
-      @apply border-border;
-    }
-    body {
-      @apply bg-background text-foreground;
-    }
-
-    .font-outline-2 {
-      -webkit-text-stroke: 2px black;
-    }
-    .font-outline-4 {
-      -webkit-text-stroke: 4px black;
-    }
-  }
-
-html.dark{
-  .toggled{
-    background-color: gray;
-  }
+/* Colors */
+:root {
+  --glitch-dark: hsl(216, 68%, 9%);
+  --glitch-blue: hsl(218, 66%, 21%);
+  --glitch-green: hsl(170, 96%, 60%);
+  --glitch-rose: hsl(302, 98%, 53%);
+  --glitch-violet: hsl(263, 50%, 38%);
 }
 
-.toggled{
+/* Light Mode */
+html{
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(240, 10%, 3.9%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(240, 10%, 3.9%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(240, 10%, 3.9%);
+  --primary: hsl(240, 5.9%, 10%);
+  --primary-foreground: hsl(0, 0%, 98%);
+  --secondary: hsl(240, 4.8%, 95.9%);
+  --secondary-foreground: hsl(240, 5.9%, 10%);
+  --muted: hsl(240, 4.8%, 95.9%);
+  --muted-foreground: hsl(240, 3.8%, 46.1%);
+  /*--accent: var(--glitch-rose);*/
+  --accent: #ACE9EC;
+  /*--accent: var(--glitch-green);*/
+  --accent-foreground: hsl(240, 5.9%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 5.9%, 90%);
+  --input: hsl(240, 5.9%, 90%);
+  --ring: hsl(240, 10%, 3.9%);
+  --radius: 0.5rem;
+}
+
+/* Dark Mode */
+html.dark {
+  --accent: var(--glitch-violet);
+  --background: var(--glitch-dark);
+  --foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --popover: var(--glitch-dark);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --primary: hsl(0, 0%, 98%);
+  --primary-foreground: hsl(240, 5.9%, 10%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --ring: hsl(240, 4.9%, 83.9%);
+}
+
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.5s ease;
+}
+
+
+.toggled {
   background-color: gray;
 }
 
 
-
-.wall{
-  /*background-color: rgba(0, 0, 0, 0.86);*/
+.start-box {
+  background-color: var(--glitch-green);
 }
 
-
-.emoji {
-  font-size: 12px; /* Adjust as needed */
-  line-height: 1; /* Prevents the emoji from increasing the height of the td */
-}
-
-@keyframes visitedAnimation {
-  0% { background-color: var(--violet); }
-  100% { background-color: var(--accent); }
-}
 
 .visited {
   animation-name: visitedAnimation;
-  animation-duration: 500ms;
+  animation-duration: 1100ms;
   animation-fill-mode: forwards;
 }
 
 
+
+/* Animations */
+
+@keyframes visitedAnimation {
+  0% { background-color: var(--glitch-blue) }
+  15% { background-color: var(--glitch-violet) }
+  50% { background-color: var(--glitch-rose) }
+  100% { background-color: var(--glitch-green) }
+}
+
 @keyframes blink {
-  0% { background-color: var(--accent); }
-  50% { background-color: violet; }
-  100% { background-color: var(--accent); }
+  0% { background-color: var(--glitch-green) }
+  100% { background-color: var(--glitch-rose) }
+}
+@keyframes zoomIn {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+h1 {
+  transition: --dominant-color 0.5s ease;
 }
 
 .end-box {
   animation: blink 150ms ease-in-out infinite;
 }
 
-.start-box {
-  background-color: var(--accent);
+table{
+  border-spacing: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
 }
 
 
-.emoji {
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 100%;
-  width: auto;
+button .focus\:bg-accent:focus {
+  background-color: var(--glitch-dark) !important;
 }
-
-
-
-
