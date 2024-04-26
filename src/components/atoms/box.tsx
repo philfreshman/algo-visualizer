@@ -1,4 +1,4 @@
-import { AlienIcon, DiamondIcon } from "@/components/ui/icons"
+import { AlienIcon, DiamondIcon } from "@/components/atoms/icons"
 import { memo, useState } from "react"
 
 interface BoxProps {

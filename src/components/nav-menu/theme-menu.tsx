@@ -1,4 +1,4 @@
-import { MenubarCheckboxItem, MenubarContent, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar"
+import { MenubarCheckboxItem, MenubarContent, MenubarMenu, MenubarTrigger } from "@/components/atoms/menubar"
 import { useTheme } from "next-themes"
 import { useState } from "react"
 
@@ -9,10 +9,6 @@ export const ThemeMenu = () => {
   const setThemeClick = (theme: "light" | "dark") => {
     setTheme(theme)
     setCurrentTheme(theme)
-    const el = document.getElementsByTagName("h1")[0]
-    console.log("el", el)
-    el.click()
-    el.focus()
   }
 
   return (

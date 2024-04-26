@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/atoms/button"
 import { AlgorithmContext } from "@/lib/coreContext"
 import { clearVisitedAndWalls } from "@/lib/utils/reset"
 import { storage } from "@/lib/utils/storage"
@@ -9,8 +9,7 @@ export default function RunMenu() {
   const algorithmContext = useContext(AlgorithmContext)
 
   if (!algorithmContext) throw new Error("AlgorithmContext is missing")
-  const { startAlgorithm, stopAlgorithm, isCompleted, isRunning, setIsRunning, clearMatrixWalls, setIsCompleted } =
-    algorithmContext
+  const { startAlgorithm, stopAlgorithm, isCompleted, isRunning, setIsRunning, clearMatrixWalls, setIsCompleted } = algorithmContext
 
   const setRun = () => {
     setIsRunning(true)

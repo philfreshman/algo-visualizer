@@ -1,5 +1,5 @@
-import { MenubarContent, MenubarItem, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar"
-import { Slider } from "@/components/ui/slider"
+import { MenubarContent, MenubarItem, MenubarMenu, MenubarTrigger } from "@/components/atoms/menubar"
+import { Slider } from "@/components/atoms/slider"
 import { local } from "@/lib/utils/storage"
 import { useEffect, useState } from "react"
 

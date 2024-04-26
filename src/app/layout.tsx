@@ -1,9 +1,9 @@
 "use client"
 import Header from "@/components/header"
 import { AlgorithmProvider } from "@/lib/coreContext"
+import "@/styles/globals.css"
 import { ThemeProvider } from "next-themes"
 import React from "react"
-import "./globals.css"
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

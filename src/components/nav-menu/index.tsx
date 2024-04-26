@@ -1,6 +1,6 @@
+import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarMenu, MenubarTrigger } from "@/components/atoms/menubar"
 import RunMenu from "@/components/nav-menu/run-menu"
 import { ThemeMenu } from "@/components/nav-menu/theme-menu"
-import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar"
 import { AlgorithmContext } from "@/lib/coreContext"
 import { clearVisited } from "@/lib/utils/reset"
 import { storage } from "@/lib/utils/storage"

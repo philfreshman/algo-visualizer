@@ -13,7 +13,6 @@ export const keyShortcuts = (key: string, func?: () => void) => {
 
     window.addEventListener("keypress", handleKeyPress)
 
-    // Cleanup function
     return () => {
       window.removeEventListener("keypress", handleKeyPress)
     }

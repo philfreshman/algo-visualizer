@@ -1,10 +1,10 @@
 "use client"
 
+import Box from "@/components/atoms/box"
 import { useRunner } from "@/lib/runner"
 import { keyShortcuts } from "@/lib/utils/key-shortcuts"
 import { clearToggled } from "@/lib/utils/reset"
 import { memo, useState } from "react"
-import Box from "./ui/box"
 
 const Board = memo(() => {
   const { matrix, toggleBox, resetBoard, start, end, setStart, setEnd } = useRunner()
