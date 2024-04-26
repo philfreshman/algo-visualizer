@@ -16,7 +16,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <AlgorithmProvider>
             <div className="flex h-full w-full flex-col ">
               <Header />
-              <main className="flex-grow ">{children}</main>
+              <main className="flex-grow">{children}</main>
             </div>
           </AlgorithmProvider>
         </ThemeProvider>

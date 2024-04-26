@@ -1,7 +1,7 @@
 "use client"
 
 import generateMaze from "@/lib/algorithms/maze"
-import { storage } from "@/lib/utils/storage"
+import { session } from "@/lib/helpers/storage"
 import React, { createContext, useEffect, useState } from "react"
 
 interface AlgorithmTypes {
@@ -43,8 +43,8 @@ export const AlgorithmProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const init = () => Array(rows).fill(0).map(() => Array(cols).fill(0))
 
   const [matrix, setMatrix] = useState<Matrix>(init())
-  const [pathfindingAlgorithm, setPathfindingAlgorithm] = useState(storage.getItem("pathfindingAlgorithm") || "DFS")
-  const [mazeGenerationAlgorithm, setMazeGenerationAlgorithm] = useState(storage.getItem("mazeGenerationAlgorithm") || "CUSTOM")
+  const [pathfindingAlgorithm, setPathfindingAlgorithm] = useState(session.getItem("pathfindingAlgorithm") || "DFS")
+  const [mazeGenerationAlgorithm, setMazeGenerationAlgorithm] = useState(session.getItem("mazeGenerationAlgorithm") || "CUSTOM")
   const [startTrigger, setStartTrigger] = useState(false)
   const [createMazeTrigger, setCreateMazeTrigger] = useState<boolean>(false)
   const [isRunning, setIsRunning] = useState(false)
@@ -69,8 +69,8 @@ export const AlgorithmProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const setCompleted = () => {
     setIsCompleted(true)
     setIsRunning(false)
-    storage.setItem("isRunning", "false")
-    storage.setItem("shouldTerminate", "false")
+    session.setItem("isRunning", "false")
+    session.setItem("shouldTerminate", "false")
   }
 
   const clearMatrixWalls = () => {
@@ -80,11 +80,11 @@ export const AlgorithmProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   }
 
   useEffect(() => {
-    storage.setItem("pathfindingAlgorithm", pathfindingAlgorithm)
+    session.setItem("pathfindingAlgorithm", pathfindingAlgorithm)
   }, [pathfindingAlgorithm])
 
   useEffect(() => {
-    storage.setItem("mazeGenerationAlgorithm", mazeGenerationAlgorithm)
+    session.setItem("mazeGenerationAlgorithm", mazeGenerationAlgorithm)
   }, [mazeGenerationAlgorithm])
 
   return (

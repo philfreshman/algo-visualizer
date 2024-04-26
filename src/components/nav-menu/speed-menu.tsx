@@ -1,6 +1,6 @@
 import { MenubarContent, MenubarItem, MenubarMenu, MenubarTrigger } from "@/components/atoms/menubar"
 import { Slider } from "@/components/atoms/slider"
-import { local } from "@/lib/utils/storage"
+import { local } from "@/lib/helpers/storage"
 import { useEffect, useState } from "react"
 
 export const SpeedMenu = () => {

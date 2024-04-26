@@ -1,23 +1,22 @@
+import { delay, exe } from "@/lib/helpers/exe"
+import { local, session } from "@/lib/helpers/storage"
+import { ui } from "@/lib/helpers/ui"
+
 // BREATH FIRST SEARCH
-
-import { delay, pauseResumeOrTerminate, shouldTerminate } from "@/lib/utils/helpers"
-import { markEndAsVisited } from "@/lib/utils/reset"
-import { local, storage } from "@/lib/utils/storage"
-
 export const bfs = async (matrix: Matrix, visited: Position[], start: Position, target: Position): Promise<Position[] | null> => {
   const queue: Position[] = [start]
 
   while (queue.length > 0) {
-    if (shouldTerminate()) {
+    if (exe.shouldTerminate()) {
       return null
     }
     const current = queue.shift()! // Get the first node in the queue
 
     // Check if the current node is the target
     if (current.row === target.row && current.col === target.col) {
-      storage.setItem("isCompleted", "true")
+      session.setItem("isCompleted", "true")
       visited.push(current)
-      markEndAsVisited()
+      ui.markEndAsVisited()
       return visited
     }
 
@@ -59,7 +58,7 @@ export const bfs = async (matrix: Matrix, visited: Position[], start: Position, 
     }
 
     // pause / resume / terminate
-    if ((await pauseResumeOrTerminate()) === null) {
+    if ((await exe.pauseResumeOrTerminate()) === null) {
       return null // terminate the algorithm
     }
 

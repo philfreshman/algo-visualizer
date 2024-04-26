@@ -1,17 +1,17 @@
 "use client"
 
 import Box from "@/components/atoms/box"
+import { keyPress } from "@/lib/helpers/keyPress"
+import { ui } from "@/lib/helpers/ui"
 import { useRunner } from "@/lib/runner"
-import { keyShortcuts } from "@/lib/utils/key-shortcuts"
-import { clearToggled } from "@/lib/utils/reset"
 import { memo, useState } from "react"
 
-const Board = memo(() => {
+export const Board = memo(() => {
   const { matrix, toggleBox, resetBoard, start, end, setStart, setEnd } = useRunner()
   const [dragging, setDragging] = useState<null | "start" | "end" | "wall">(null)
 
-  keyShortcuts("c", clearToggled)
-  keyShortcuts("x", resetBoard)
+  keyPress("c", ui.clearToggled)
+  keyPress("x", resetBoard)
 
   const isStartPosition = (p: Position): boolean => p.row == start.row && p.col == start.col
   const isEndPosition = (p: Position): boolean => p.row == end.row && p.col == end.col
@@ -90,5 +90,3 @@ const Board = memo(() => {
     </div>
   )
 })
-
-export default Board

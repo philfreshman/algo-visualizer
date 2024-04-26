@@ -1,4 +1,4 @@
-export const storage = {
+export const session = {
   getItem(key: string): string | null {
     if (typeof window !== "undefined" && window.sessionStorage) {
       return window.sessionStorage.getItem(key)

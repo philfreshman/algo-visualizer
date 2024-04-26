@@ -1,7 +1,8 @@
 import { Button } from "@/components/atoms/button"
 import { AlgorithmContext } from "@/lib/coreContext"
-import { clearVisitedAndWalls } from "@/lib/utils/reset"
-import { storage } from "@/lib/utils/storage"
+import { keyPress } from "@/lib/helpers/keyPress"
+import { session } from "@/lib/helpers/storage"
+import { ui } from "@/lib/helpers/ui"
 import { PauseIcon, PlayIcon } from "@radix-ui/react-icons"
 import { useContext, useEffect } from "react"
 
@@ -13,27 +14,28 @@ export default function RunMenu() {
 
   const setRun = () => {
     setIsRunning(true)
-    storage.setItem("isRunning", "true") // continue execution inside algorithm
+    session.setItem("isRunning", "true") // continue execution inside algorithm
     if (isCompleted) startAlgorithm()
   }
 
   const setPause = () => {
     setIsRunning(false)
-    storage.setItem("isRunning", "false") // pause execution inside algorithm
+    session.setItem("isRunning", "false") // pause execution inside algorithm
     stopAlgorithm()
   }
-
   const resetAll = () => {
-    if (!isCompleted) storage.setItem("shouldTerminate", "true")
+    if (!isCompleted) session.setItem("shouldTerminate", "true")
     setIsRunning(false)
     setIsCompleted(true)
-    clearVisitedAndWalls()
+    ui.clearVisitedAndWalls()
     clearMatrixWalls()
   }
 
   useEffect(() => {
     if (isCompleted) setIsRunning(false)
   }, [isCompleted])
+
+  keyPress("x", resetAll)
 
   return (
     <>

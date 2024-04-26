@@ -2,8 +2,8 @@ import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarMenu, MenubarTrigg
 import RunMenu from "@/components/nav-menu/run-menu"
 import { ThemeMenu } from "@/components/nav-menu/theme-menu"
 import { AlgorithmContext } from "@/lib/coreContext"
-import { clearVisited } from "@/lib/utils/reset"
-import { storage } from "@/lib/utils/storage"
+import { session } from "@/lib/helpers/storage"
+import { ui } from "@/lib/helpers/ui"
 import { useContext } from "react"
 import { SpeedMenu } from "./speed-menu"
 
@@ -23,11 +23,11 @@ export default function Index() {
   } = algorithmContext
 
   const onPathfindingChange = (key: string) => {
-    if (!isCompleted) storage.setItem("shouldTerminate", "true")
+    if (!isCompleted) session.setItem("shouldTerminate", "true")
     setIsRunning(false)
     setIsCompleted(true)
     setPathfindingAlgorithm(key)
-    clearVisited()
+    ui.clearVisited()
   }
 
   return (

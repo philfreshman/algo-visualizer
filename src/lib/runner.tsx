@@ -2,8 +2,8 @@
 
 import { bfs } from "@/lib/algorithms/bfs"
 import { dfs } from "@/lib/algorithms/dfs"
-import { clearVisited, markStartAsVisited } from "@/lib/utils/reset"
-import { storage } from "@/lib/utils/storage"
+import { session } from "@/lib/helpers/storage"
+import { ui } from "@/lib/helpers/ui"
 import { useContext, useEffect, useState } from "react"
 import { AlgorithmContext } from "./coreContext"
 
@@ -21,15 +21,15 @@ export function useRunner() {
   // handlers
   const run = async () => {
     let visited: Position[] = []
-    clearVisited()
+    ui.clearVisited()
 
     switch (pathfindingAlgorithm) {
       case "DFS":
-        markStartAsVisited()
+        ui.markStartAsVisited()
         await dfs(matrix, visited, start, end)
         break
       case "BFS":
-        markStartAsVisited()
+        ui.markStartAsVisited()
         await bfs(matrix, visited, start, end)
         break
       default:
@@ -51,9 +51,9 @@ export function useRunner() {
   }
 
   const resetBoard = async () => {
-    storage.setItem("shouldTerminate", "true")
-    storage.setItem("isRunning", "false")
-    clearVisited()
+    session.setItem("shouldTerminate", "true")
+    session.setItem("isRunning", "false")
+    ui.clearVisited()
   }
 
   useEffect(() => {

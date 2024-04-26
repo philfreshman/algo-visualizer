@@ -1,11 +1,10 @@
+import { delay, exe } from "@/lib/helpers/exe"
+import { local, session } from "@/lib/helpers/storage"
+import { ui } from "@/lib/helpers/ui"
+
 // DEPTH FIRST SEARCH
-
-import { delay, pauseResumeOrTerminate, shouldTerminate } from "@/lib/utils/helpers"
-import { markEndAsVisited } from "@/lib/utils/reset"
-import { local, storage } from "@/lib/utils/storage"
-
 export const dfs = async (matrix: Matrix, visited: Position[], current: Position, target: Position): Promise<Position[] | null> => {
-  if (shouldTerminate()) {
+  if (exe.shouldTerminate()) {
     return null
   }
 
@@ -23,8 +22,8 @@ export const dfs = async (matrix: Matrix, visited: Position[], current: Position
   // target found
   if (current.row === target.row && current.col === target.col) {
     visited.push(current)
-    storage.setItem("isCompleted", "true")
-    markEndAsVisited()
+    session.setItem("isCompleted", "true")
+    ui.markEndAsVisited()
     return visited
   }
 
@@ -49,7 +48,7 @@ export const dfs = async (matrix: Matrix, visited: Position[], current: Position
   await delay(Number(local.getItem("delay")))
 
   // pause / resume / terminate
-  if ((await pauseResumeOrTerminate()) === null) {
+  if ((await exe.pauseResumeOrTerminate()) === null) {
     return null // terminate the algorithm
   }
 
