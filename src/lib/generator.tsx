@@ -1,3 +1,4 @@
+import { cols, rows } from "@/lib/constants"
 import { AlgorithmContext } from "@/lib/coreContext"
 import labyrinth from "@/lib/generators/labyrinth"
 import spiced from "@/lib/generators/spiced"
@@ -15,7 +16,7 @@ export function useGenerator() {
     switch (mazeGenerationAlgorithm) {
       case "CUSTOM":
         break
-      case "RECURSIVE_DIVISION":
+      case "LABYRINTH":
         setMatrix(labyrinth())
         break
       case "SPICED":
@@ -24,18 +25,26 @@ export function useGenerator() {
       default:
         console.log("run => algorithm not found!")
     }
+
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
+        if (matrix[row][col] === 1) {
+          document.querySelector(`#B${row}\\:${col}`)?.classList.add("toggled")
+        }
+      }
+    }
   }
 
-  const prepare = () => {
+  const prepare = async () => {
+    ui.clearVisitedAndWalls()
     clearMatrixWalls()
     setIsCompleted(true)
     setIsRunning(false)
     session.setItem("mazeGenerationAlgorithm", mazeGenerationAlgorithm)
-    ui.clearVisitedAndWalls()
   }
 
   useEffect(() => {
-    prepare()
+    prepare().then()
     generate()
   }, [mazeGenerationAlgorithm])
 }
