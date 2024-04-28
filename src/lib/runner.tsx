@@ -25,11 +25,11 @@ export function useRunner() {
 
     switch (pathfindingAlgorithm) {
       case "DFS":
-        ui.markStartAsVisited()
+        ui.setStartAsVisited()
         await dfs(matrix, visited, start, end)
         break
       case "BFS":
-        ui.markStartAsVisited()
+        ui.setStartAsVisited()
         await bfs(matrix, visited, start, end)
         break
       default:
@@ -59,6 +59,10 @@ export function useRunner() {
   useEffect(() => {
     if (isRunning) run().then()
   }, [startTrigger])
+
+  useEffect(() => {
+    session.setItem("pathfindingAlgorithm", pathfindingAlgorithm)
+  }, [pathfindingAlgorithm])
 
   return { matrix, start, end, toggleBox, resetBoard, setStart, setEnd }
 }

@@ -20,12 +20,12 @@ export const ui = {
     return this
   },
 
-  markEndAsVisited() {
+  setEndAsVisited() {
     document.getElementById("end")?.classList.add("end-box")
     return this
   },
 
-  markStartAsVisited() {
+  setStartAsVisited() {
     document.getElementById("start")?.classList.add("start-box")
     return this
   },

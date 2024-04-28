@@ -23,7 +23,7 @@ export const dfs = async (matrix: Matrix, visited: Position[], current: Position
   if (current.row === target.row && current.col === target.col) {
     visited.push(current)
     session.setItem("isCompleted", "true")
-    ui.markEndAsVisited()
+    ui.setEndAsVisited()
     return visited
   }
 
