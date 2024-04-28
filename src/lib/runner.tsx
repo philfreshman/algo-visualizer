@@ -2,14 +2,14 @@
 
 import { bfs } from "@/lib/algorithms/bfs"
 import { dfs } from "@/lib/algorithms/dfs"
-import { session } from "@/lib/helpers/storage"
+import { local, session } from "@/lib/helpers/storage"
 import { ui } from "@/lib/helpers/ui"
 import { useContext, useEffect, useState } from "react"
 import { AlgorithmContext } from "./coreContext"
 
 export function useRunner() {
-  const startPos: Position = { col: 8, row: 8 }
-  const endPos: Position = { col: 32, row: 22 }
+  const startPos: Position = { col: 5, row: 5 }
+  const endPos: Position = { col: 36, row: 27 }
 
   const algorithmContext = useContext(AlgorithmContext)
   if (!algorithmContext) throw new Error("AlgorithmContext is missing")
@@ -46,6 +46,9 @@ export function useRunner() {
     setMatrix((prevMatrix: Matrix) => {
       const newMatrix = prevMatrix.map((row) => [...row])
       newMatrix[i][j] = newMatrix[i][j] === 0 ? 1 : 0
+
+      console.log(newMatrix)
+      local.setItem("matrix", JSON.stringify(newMatrix))
       return newMatrix
     })
   }

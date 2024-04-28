@@ -1,7 +1,9 @@
 // global.d.ts
 
 declare global {
-  type AlgorithmType = "DFS" | "BFS"
+  type AlgorithmTypes = {
+    [key: string]: string
+  }
 
   type Matrix = number[][]
 
