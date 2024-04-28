@@ -1,6 +1,7 @@
 import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarMenu, MenubarTrigger } from "@/components/atoms/menubar"
 import RunMenu from "@/components/nav-menu/run-menu"
 import { ThemeMenu } from "@/components/nav-menu/theme-menu"
+import { mazeAlgorithms, searchAlgorithms } from "@/lib/constants"
 import { AlgorithmContext } from "@/lib/coreContext"
 import { session } from "@/lib/helpers/storage"
 import { ui } from "@/lib/helpers/ui"
@@ -17,8 +18,6 @@ export default function Index() {
     setIsCompleted,
     mazeGenerationAlgorithm,
     setMazeGenerationAlgorithm,
-    searchAlgorithms,
-    mazeAlgorithms,
     setIsRunning,
   } = algorithmContext
 
@@ -28,6 +27,14 @@ export default function Index() {
     setIsCompleted(true)
     setPathfindingAlgorithm(key)
     ui.clearVisited()
+  }
+
+  const onMazeGenerationChange = (key: string) => {
+    ui.clearVisited()
+    if (!isCompleted) session.setItem("shouldTerminate", "true")
+    setIsRunning(false)
+    setIsCompleted(true)
+    setMazeGenerationAlgorithm(key)
   }
 
   return (
@@ -47,12 +54,7 @@ export default function Index() {
         <MenubarTrigger>Grid</MenubarTrigger>
         <MenubarContent>
           {Object.entries(mazeAlgorithms).map(([key, value]) => (
-            <MenubarCheckboxItem
-              checked={mazeGenerationAlgorithm == key}
-              key={key}
-              onClick={() => setMazeGenerationAlgorithm(key)}
-              disabled={key == "LABIRYNT"}
-            >
+            <MenubarCheckboxItem checked={mazeGenerationAlgorithm == key} key={key} onClick={() => onMazeGenerationChange(key)}>
               {value}
             </MenubarCheckboxItem>
           ))}

@@ -1,12 +1,15 @@
 "use client"
 
 import Box from "@/components/atoms/box"
+import { useGenerator } from "@/lib/generator"
 import { keyPress } from "@/lib/helpers/keyPress"
 import { ui } from "@/lib/helpers/ui"
 import { useRunner } from "@/lib/runner"
 import { memo, useState } from "react"
 
 export const Board = memo(() => {
+  useGenerator()
+
   const { matrix, toggleBox, resetBoard, start, end, setStart, setEnd } = useRunner()
   const [dragging, setDragging] = useState<null | "start" | "end" | "wall">(null)
 
