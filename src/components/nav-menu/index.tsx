@@ -8,6 +8,10 @@ import { ui } from "@/lib/helpers/ui"
 import { useContext } from "react"
 import { SpeedMenu } from "./speed-menu"
 
+interface RunMenuProps {
+  onReset?: () => void
+}
+
 export default function Index() {
   const algorithmContext = useContext(AlgorithmContext)
   if (!algorithmContext) throw new Error("AlgorithmContext is missing")
@@ -37,6 +41,11 @@ export default function Index() {
     setMazeGenerationAlgorithm(key)
   }
 
+  const onReset = () => {
+    console.log("onReset")
+    onMazeGenerationChange("CUSTOM")
+  }
+
   return (
     <Menubar>
       <MenubarMenu>
@@ -54,7 +63,7 @@ export default function Index() {
         <MenubarTrigger>Grid</MenubarTrigger>
         <MenubarContent>
           {Object.entries(mazeAlgorithms).map(([key, value]) => (
-            <MenubarCheckboxItem checked={mazeGenerationAlgorithm == key} key={key} onClick={() => onMazeGenerationChange(key)}>
+            <MenubarCheckboxItem checked={mazeGenerationAlgorithm === key} key={key} onClick={() => onMazeGenerationChange(key)}>
               {value}
             </MenubarCheckboxItem>
           ))}
@@ -63,7 +72,7 @@ export default function Index() {
 
       <SpeedMenu />
       <ThemeMenu />
-      <RunMenu />
+      <RunMenu onReset={onReset} />
     </Menubar>
   )
 }

@@ -6,7 +6,7 @@ import { ui } from "@/lib/helpers/ui"
 import { PauseIcon, PlayIcon } from "@radix-ui/react-icons"
 import { useContext, useEffect } from "react"
 
-export default function RunMenu() {
+export default function RunMenu({ onReset }: { onReset: () => void }) {
   const algorithmContext = useContext(AlgorithmContext)
 
   if (!algorithmContext) throw new Error("AlgorithmContext is missing")
@@ -29,6 +29,7 @@ export default function RunMenu() {
     setIsCompleted(true)
     ui.clearVisitedAndWalls()
     clearMatrixWalls()
+    onReset()
   }
 
   useEffect(() => {
