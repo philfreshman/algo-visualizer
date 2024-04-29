@@ -31,9 +31,9 @@ const Header: FC = () => {
             </DialogTrigger>
             <DialogContent className="bg-[var(--glitch-green)]">
               <DialogHeader>
-                <DialogTitle> Get in touch</DialogTitle>
+                <DialogTitle className="dark:text-black"> Get in touch</DialogTitle>
                 <DialogDescription>
-                  <Image src="./qr.png" width="500" height="500" alt="qr-code" />
+                  <Image src="./qr2.png" width="500" height="500" alt="qr-code" />
                 </DialogDescription>
               </DialogHeader>
             </DialogContent>
