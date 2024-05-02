@@ -32,7 +32,7 @@ export const AlgorithmProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   const [matrix, setMatrix] = useState<Matrix>(init())
   const [pathfindingAlgorithm, setPathfindingAlgorithm] = useState(session.getItem("pathfindingAlgorithm") || "DFS")
-  const [mazeGenerationAlgorithm, setMazeGenerationAlgorithm] = useState(session.getItem("mazeGenerationAlgorithm") || "CUSTOM")
+  const [mazeGenerationAlgorithm, setMazeGenerationAlgorithm] = useState(session.getItem("mazeGenerationAlgorithm") || "LABYRINTH")
   const [startTrigger, setStartTrigger] = useState(false)
   const [createMazeTrigger, setCreateMazeTrigger] = useState<boolean>(false)
   const [isRunning, setIsRunning] = useState(false)
