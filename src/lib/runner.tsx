@@ -1,5 +1,6 @@
 "use client"
 
+import { aStar } from "@/lib/algorithms/aStar"
 import { bfs } from "@/lib/algorithms/bfs"
 import { dfs } from "@/lib/algorithms/dfs"
 import { local, session } from "@/lib/helpers/storage"
@@ -31,6 +32,11 @@ export function useRunner() {
       case "BFS":
         ui.markStartAsVisited()
         await bfs(matrix, visited, start, end)
+        break
+      case "AStar":
+        ui.markStartAsVisited()
+        const visit = await aStar(matrix, start, end)
+        console.log(visit)
         break
       default:
         console.log("run => algorithm not found!")

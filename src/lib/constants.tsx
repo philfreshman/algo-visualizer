@@ -5,6 +5,7 @@ export const rows = 31
 export const searchAlgorithms: AlgorithmTypes = {
   DFS: "Depth first search",
   BFS: "Breath first search",
+  AStar: "A*",
 }
 export const mazeAlgorithms: AlgorithmTypes = {
   LABYRINTH: "Labyrinth",
