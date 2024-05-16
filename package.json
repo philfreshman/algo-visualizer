@@ -16,25 +16,25 @@
     "@radix-ui/react-slider": "^1.1.2",
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.1",
-    "next": "14.2.3",
+    "clsx": "^2.1.0",
+    "next": "14.1.4",
     "next-themes": "^0.3.0",
     "prettier": "^3.2.5",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "tailwind-merge": "^2.3.0"
+    "react": "^18",
+    "react-dom": "^18",
+    "tailwind-merge": "^2.2.2"
   },
   "devDependencies": {
-    "@types/node": "^20.12.11",
-    "@types/react": "^18.3.2",
+    "@types/node": "^20",
+    "@types/react": "^18",
     "@types/react-dom": "^18",
-    "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.38",
+    "autoprefixer": "^10.0.1",
+    "postcss": "^8",
     "prettier-plugin-organize-attributes": "^1.0.0",
     "prettier-plugin-organize-imports": "^3.2.4",
     "prettier-plugin-tailwindcss": "^0.5.14",
-    "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.5",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5",
     "worker-plugin": "^5.0.1"
   }
 }
