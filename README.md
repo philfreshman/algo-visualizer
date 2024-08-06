@@ -13,5 +13,3 @@ Currently implemented algorithms:
 - Breath First Search
 
 Demo: [here](https://philfreshman.github.io/algo-visualizer/)
-
-####   🚧  Project currently in development, more algorithms comming soon.
