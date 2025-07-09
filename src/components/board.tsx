@@ -72,7 +72,7 @@ export const Board = memo(() => {
             <table id="table" className={'h-full w-full '} style={{ cursor: 'crosshair' }}>
                 <tbody>
                     {matrix.map((row, i) => (
-                        <tr key={i.toString()}>
+                        <tr key={i}>
                             {row.map((value, j) => (
                                 <Box
                                     id={getId({ row: i, col: j })}
