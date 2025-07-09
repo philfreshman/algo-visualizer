@@ -4,121 +4,130 @@
 
 /* Colors */
 :root {
-  --glitch-dark: hsl(216, 68%, 9%);
-  --glitch-blue: hsl(218, 66%, 21%);
-  --glitch-green: hsl(170, 96%, 60%);
-  --glitch-rose: hsl(302, 98%, 53%);
-  --glitch-violet: hsl(263, 50%, 38%);
+    --glitch-dark: hsl(216, 68%, 9%);
+    --glitch-blue: hsl(218, 66%, 21%);
+    --glitch-green: hsl(170, 96%, 60%);
+    --glitch-rose: hsl(302, 98%, 53%);
+    --glitch-violet: hsl(263, 50%, 38%);
 }
 
 /* Light Mode */
-html{
-  --background: hsl(0, 0%, 100%);
-  --foreground: hsl(240, 10%, 3.9%);
-  --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(240, 10%, 3.9%);
-  --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(240, 10%, 3.9%);
-  --primary: hsl(240, 5.9%, 10%);
-  --primary-foreground: hsl(0, 0%, 98%);
-  --secondary: hsl(240, 4.8%, 95.9%);
-  --secondary-foreground: hsl(240, 5.9%, 10%);
-  --muted: hsl(240, 4.8%, 95.9%);
-  --muted-foreground: hsl(240, 3.8%, 46.1%);
-  /*--accent: var(--glitch-rose);*/
-  --accent: #ACE9EC;
-  /*--accent: var(--glitch-green);*/
-  --accent-foreground: hsl(240, 5.9%, 10%);
-  --destructive: hsl(0, 84.2%, 60.2%);
-  --destructive-foreground: hsl(0, 0%, 98%);
-  --border: hsl(240, 5.9%, 90%);
-  --input: hsl(240, 5.9%, 90%);
-  --ring: hsl(240, 10%, 3.9%);
-  --radius: 0.5rem;
+html {
+    --background: hsl(0, 0%, 100%);
+    --foreground: hsl(240, 10%, 3.9%);
+    --card: hsl(0, 0%, 100%);
+    --card-foreground: hsl(240, 10%, 3.9%);
+    --popover: hsl(0, 0%, 100%);
+    --popover-foreground: hsl(240, 10%, 3.9%);
+    --primary: hsl(240, 5.9%, 10%);
+    --primary-foreground: hsl(0, 0%, 98%);
+    --secondary: hsl(240, 4.8%, 95.9%);
+    --secondary-foreground: hsl(240, 5.9%, 10%);
+    --muted: hsl(240, 4.8%, 95.9%);
+    --muted-foreground: hsl(240, 3.8%, 46.1%);
+    /*--accent: var(--glitch-rose);*/
+    --accent: #ace9ec;
+    /*--accent: var(--glitch-green);*/
+    --accent-foreground: hsl(240, 5.9%, 10%);
+    --destructive: hsl(0, 84.2%, 60.2%);
+    --destructive-foreground: hsl(0, 0%, 98%);
+    --border: hsl(240, 5.9%, 90%);
+    --input: hsl(240, 5.9%, 90%);
+    --ring: hsl(240, 10%, 3.9%);
+    --radius: 0.5rem;
 }
 
 /* Dark Mode */
 html.dark {
-  --accent: var(--glitch-violet);
-  --background: var(--glitch-dark);
-  --foreground: hsl(0, 0%, 98%);
-  --card: hsl(240, 10%, 3.9%);
-  --card-foreground: hsl(0, 0%, 98%);
-  --popover: var(--glitch-dark);
-  --popover-foreground: hsl(0, 0%, 98%);
-  --primary: hsl(0, 0%, 98%);
-  --primary-foreground: hsl(240, 5.9%, 10%);
-  --secondary: hsl(240, 3.7%, 15.9%);
-  --secondary-foreground: hsl(0, 0%, 98%);
-  --muted: hsl(240, 3.7%, 15.9%);
-  --muted-foreground: hsl(240, 5%, 64.9%);
-  --accent-foreground: hsl(0, 0%, 98%);
-  --destructive: hsl(0, 62.8%, 30.6%);
-  --destructive-foreground: hsl(0, 0%, 98%);
-  --border: hsl(240, 3.7%, 15.9%);
-  --input: hsl(240, 3.7%, 15.9%);
-  --ring: hsl(240, 4.9%, 83.9%);
+    --accent: var(--glitch-violet);
+    --background: var(--glitch-dark);
+    --foreground: hsl(0, 0%, 98%);
+    --card: hsl(240, 10%, 3.9%);
+    --card-foreground: hsl(0, 0%, 98%);
+    --popover: var(--glitch-dark);
+    --popover-foreground: hsl(0, 0%, 98%);
+    --primary: hsl(0, 0%, 98%);
+    --primary-foreground: hsl(240, 5.9%, 10%);
+    --secondary: hsl(240, 3.7%, 15.9%);
+    --secondary-foreground: hsl(0, 0%, 98%);
+    --muted: hsl(240, 3.7%, 15.9%);
+    --muted-foreground: hsl(240, 5%, 64.9%);
+    --accent-foreground: hsl(0, 0%, 98%);
+    --destructive: hsl(0, 62.8%, 30.6%);
+    --destructive-foreground: hsl(0, 0%, 98%);
+    --border: hsl(240, 3.7%, 15.9%);
+    --input: hsl(240, 3.7%, 15.9%);
+    --ring: hsl(240, 4.9%, 83.9%);
 }
-
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  transition: background-color 0.5s ease;
+    background-color: var(--background);
+    color: var(--foreground);
+    transition: background-color 0.5s ease;
 }
-
 
 .toggled {
-  background-color: gray;
+    background-color: gray;
 }
-
 
 .start-box {
-  background-color: var(--glitch-green);
+    background-color: var(--glitch-green);
 }
-
 
 .visited {
-  animation-name: visitedAnimation;
-  animation-duration: 1100ms;
-  animation-fill-mode: forwards;
+    animation-name: visitedAnimation;
+    animation-duration: 1100ms;
+    animation-fill-mode: forwards;
 }
-
-
 
 /* Animations */
 
 @keyframes visitedAnimation {
-  0% { background-color: var(--glitch-blue) }
-  15% { background-color: var(--glitch-violet) }
-  50% { background-color: var(--glitch-rose) }
-  100% { background-color: var(--glitch-green) }
+    0% {
+        background-color: var(--glitch-blue);
+    }
+    15% {
+        background-color: var(--glitch-violet);
+    }
+    50% {
+        background-color: var(--glitch-rose);
+    }
+    100% {
+        background-color: var(--glitch-green);
+    }
 }
 
 @keyframes blink {
-  0% { background-color: var(--glitch-green) }
-  100% { background-color: var(--glitch-rose) }
+    0% {
+        background-color: var(--glitch-green);
+    }
+    100% {
+        background-color: var(--glitch-rose);
+    }
 }
 @keyframes zoomIn {
-  from { transform: scale(0); }
-  to { transform: scale(1); }
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
 }
 
 h1 {
-  transition: --dominant-color 0.5s ease;
+    transition: --dominant-color 0.5s ease;
 }
 
 .end-box {
-  animation: blink 150ms ease-in-out infinite;
+    animation: blink 150ms ease-in-out infinite;
 }
 
-table{
-  border-spacing: 0;
-  border-collapse: collapse;
-  table-layout: fixed;
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    table-layout: fixed;
 }
-
 
 button .focus\:bg-accent:focus {
-  background-color: var(--glitch-dark) !important;
+    background-color: var(--glitch-dark) !important;
 }
