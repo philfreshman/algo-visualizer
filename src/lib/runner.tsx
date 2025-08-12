@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from 'react'
 import { aStar } from '@/lib/algorithms/a-star'
 import { bfs } from '@/lib/algorithms/bfs'
 import { dfs } from '@/lib/algorithms/dfs'
+import { dijkstra } from '@/lib/algorithms/dijkstra'
 import { local, session } from '@/lib/helpers/storage'
 import { ui } from '@/lib/helpers/ui'
 import { AlgorithmContext } from './coreContext'
@@ -36,6 +37,10 @@ export function useRunner() {
             case 'ASTAR':
                 ui.markStartAsVisited()
                 await aStar(matrix, visited, start, end)
+                break
+            case 'DJIKSTRA':
+                ui.markStartAsVisited()
+                await dijkstra(matrix, visited, start, end)
                 break
 
             default:

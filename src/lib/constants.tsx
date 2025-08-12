@@ -6,6 +6,7 @@ export const searchAlgorithms: AlgorithmTypes = {
     ASTAR: 'A*',
     DFS: 'Depth first search',
     BFS: 'Breath first search',
+    DJIKSTRA: 'Dijkstra',
 }
 export const mazeAlgorithms: AlgorithmTypes = {
     LABYRINTH: 'Labyrinth',
