@@ -1,8 +1,8 @@
 import { useContext, useEffect } from 'react'
 import { cols, rows } from '@/lib/constants'
 import { AlgorithmContext } from '@/lib/coreContext'
+import fresh from '@/lib/generators/fresh'
 import labyrinth from '@/lib/generators/labyrinth'
-import spiced from '@/lib/generators/spiced'
 import { session } from '@/lib/helpers/storage'
 import { ui } from '@/lib/helpers/ui'
 
@@ -19,8 +19,8 @@ export function useGenerator() {
             case 'LABYRINTH':
                 setMatrix(labyrinth())
                 break
-            case 'SPICED':
-                setMatrix(spiced())
+            case 'FRESH':
+                setMatrix(fresh())
                 break
             default:
                 console.log('run => algorithm not found!')

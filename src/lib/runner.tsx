@@ -58,7 +58,6 @@ export function useRunner() {
             const newMatrix = prevMatrix.map((row) => [...row])
             newMatrix[i][j] = newMatrix[i][j] === 0 ? 1 : 0
 
-            console.log(newMatrix)
             local.setItem('matrix', JSON.stringify(newMatrix))
             return newMatrix
         })

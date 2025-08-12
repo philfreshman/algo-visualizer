@@ -7,7 +7,7 @@ export const exe = {
         return session.getItem('shouldTerminate') === 'true'
     },
 
-    async pauseResumeOrTerminate(): Promise<null | void> {
+    async pauseResumeOrTerminate(): Promise<null | undefined> {
         let isRunning = session.getItem('isRunning') === 'false'
         let terminate = this.shouldTerminate()
         if (isRunning || terminate) {
