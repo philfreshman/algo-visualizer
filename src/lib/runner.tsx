@@ -1,6 +1,7 @@
 'use client'
 
 import { useContext, useEffect, useState } from 'react'
+import { aStar } from '@/lib/algorithms/a-star'
 import { bfs } from '@/lib/algorithms/bfs'
 import { dfs } from '@/lib/algorithms/dfs'
 import { local, session } from '@/lib/helpers/storage'
@@ -8,8 +9,8 @@ import { ui } from '@/lib/helpers/ui'
 import { AlgorithmContext } from './coreContext'
 
 export function useRunner() {
-    const startPos: Position = { col: 5, row: 5 }
-    const endPos: Position = { col: 36, row: 27 }
+    const startPos: Position = { col: 0, row: 1 } // Alien
+    const endPos: Position = { col: 40, row: 29 } // Diamond
 
     const algorithmContext = useContext(AlgorithmContext)
     if (!algorithmContext) throw new Error('AlgorithmContext is missing')
@@ -32,6 +33,11 @@ export function useRunner() {
                 ui.markStartAsVisited()
                 await bfs(matrix, visited, start, end)
                 break
+            case 'ASTAR':
+                ui.markStartAsVisited()
+                await aStar(matrix, visited, start, end)
+                break
+
             default:
                 console.log('run => algorithm not found!')
         }
