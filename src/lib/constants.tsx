@@ -11,5 +11,5 @@ export const searchAlgorithms: AlgorithmTypes = {
 export const mazeAlgorithms: AlgorithmTypes = {
     LABYRINTH: 'Labyrinth',
     CUSTOM: 'Custom',
-    SPICED: 'Spiced',
+    FRESH: 'Fresh',
 }
