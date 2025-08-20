@@ -10,30 +10,46 @@ export function useGenerator() {
     const algorithmContext = useContext(AlgorithmContext)
     if (!algorithmContext) throw new Error('AlgorithmContext is missing')
 
-    const { matrix, setMatrix, clearMatrixWalls, setIsRunning, mazeGenerationAlgorithm, setIsCompleted } = algorithmContext
+    const { setMatrix, clearMatrixWalls, setIsRunning, mazeGenerationAlgorithm, setIsCompleted } = algorithmContext
 
     const generate = useCallback(() => {
+        let newMatrix: Matrix
         switch (mazeGenerationAlgorithm) {
             case 'CUSTOM':
-                break
+                return
             case 'LABYRINTH':
-                setMatrix(labyrinth())
+                newMatrix = labyrinth()
                 break
             case 'FRESH':
-                setMatrix(fresh())
+                newMatrix = fresh()
                 break
             default:
                 console.log('run => algorithm not found!')
+                return
         }
 
-        for (let row = 0; row < rows; row++) {
-            for (let col = 0; col < cols; col++) {
-                if (matrix[row][col] === 1) {
-                    document.querySelector(`#B${row}\\:${col}`)?.classList.add('toggled')
+        setMatrix(newMatrix)
+
+        // Use requestAnimationFrame to batch DOM updates
+        requestAnimationFrame(() => {
+            // Build a list of elements to update
+            const elementsToToggle: Element[] = []
+
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < cols; col++) {
+                    if (newMatrix[row][col] === 1) {
+                        const element = document.querySelector(`#B${row}\\:${col}`)
+                        if (element) {
+                            elementsToToggle.push(element)
+                        }
+                    }
                 }
             }
-        }
-    }, [mazeGenerationAlgorithm, matrix, setMatrix])
+
+            // Apply all class changes at once
+            elementsToToggle.forEach((el) => el.classList.add('toggled'))
+        })
+    }, [mazeGenerationAlgorithm, setMatrix])
 
     const prepare = useCallback(async () => {
         ui.clearVisitedAndWalls()
