@@ -6,11 +6,11 @@ import { keyPress } from '@/lib/helpers/keyPress'
 import { session } from '@/lib/helpers/storage'
 import { ui } from '@/lib/helpers/ui'
 
-export default function RunMenu({ onReset }: { onReset: () => void }) {
+export default function RunMenu() {
     const algorithmContext = useContext(AlgorithmContext)
 
     if (!algorithmContext) throw new Error('AlgorithmContext is missing')
-    const { startAlgorithm, stopAlgorithm, isCompleted, isRunning, setIsRunning, clearMatrixWalls, setIsCompleted } = algorithmContext
+    const { startAlgorithm, stopAlgorithm, isCompleted, isRunning, setIsRunning, setIsCompleted } = algorithmContext
 
     const setRun = () => {
         setIsRunning(true)
@@ -27,9 +27,7 @@ export default function RunMenu({ onReset }: { onReset: () => void }) {
         if (!isCompleted) session.setItem('shouldTerminate', 'true')
         setIsRunning(false)
         setIsCompleted(true)
-        ui.clearVisitedAndWalls()
-        clearMatrixWalls()
-        onReset()
+        ui.clearVisited()
     }
 
     useEffect(() => {
@@ -40,15 +38,15 @@ export default function RunMenu({ onReset }: { onReset: () => void }) {
 
     return (
         <>
-            <Button variant={'ghost'} onClick={() => resetAll()}>
+            <Button variant={'ghost'} onClick={resetAll}>
                 Reset
             </Button>
             {!isRunning ? (
-                <Button variant={'ghost'} onClick={() => setRun()}>
+                <Button variant={'ghost'} onClick={setRun}>
                     <PlayIcon className="h-[1.2rem] w-[1.2rem] transition duration-200 ease-in-out" />
                 </Button>
             ) : (
-                <Button variant={'ghost'} onClick={() => setPause()}>
+                <Button variant={'ghost'} onClick={setPause}>
                     <PauseIcon className="h-[1.2rem] w-[1.2rem] transition duration-200 ease-in-out" />
                 </Button>
             )}

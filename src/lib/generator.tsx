@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { cols, rows } from '@/lib/constants'
 import { AlgorithmContext } from '@/lib/coreContext'
 import fresh from '@/lib/generators/fresh'
@@ -12,7 +12,7 @@ export function useGenerator() {
 
     const { matrix, setMatrix, clearMatrixWalls, setIsRunning, mazeGenerationAlgorithm, setIsCompleted } = algorithmContext
 
-    const generate = () => {
+    const generate = useCallback(() => {
         switch (mazeGenerationAlgorithm) {
             case 'CUSTOM':
                 break
@@ -33,16 +33,17 @@ export function useGenerator() {
                 }
             }
         }
-    }
+    }, [mazeGenerationAlgorithm, matrix, setMatrix])
 
-    const prepare = async () => {
+    const prepare = useCallback(async () => {
         ui.clearVisitedAndWalls()
         clearMatrixWalls()
         setIsCompleted(true)
         setIsRunning(false)
         session.setItem('mazeGenerationAlgorithm', mazeGenerationAlgorithm)
-    }
+    }, [clearMatrixWalls, setIsCompleted, setIsRunning, mazeGenerationAlgorithm])
 
+    // biome-ignore lint/correctness/useExhaustiveDependencies: Full dependency list causes a maze generation loop
     useEffect(() => {
         prepare().then()
         generate()

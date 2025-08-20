@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { aStar } from '@/lib/algorithms/a-star'
 import { bfs } from '@/lib/algorithms/bfs'
 import { dfs } from '@/lib/algorithms/dfs'
@@ -21,7 +21,7 @@ export function useRunner() {
     const [end, setEnd] = useState<Position>(endPos)
 
     // handlers
-    const run = async () => {
+    const run = useCallback(async () => {
         const visited: Position[] = []
         ui.clearVisited()
 
@@ -42,17 +42,16 @@ export function useRunner() {
                 ui.markStartAsVisited()
                 await dijkstra(matrix, visited, start, end)
                 break
-
             default:
                 console.log('run => algorithm not found!')
         }
         setCompleted()
-    }
+    }, [end, matrix, pathfindingAlgorithm, setCompleted, start])
 
     const toggleBox = (i: number, j: number) => {
         const box = document.querySelector(`#B${i}\\:${j}`)
         if (box && !box.classList.contains('wall')) {
-            box!.classList.toggle('toggled')
+            box.classList.toggle('toggled')
         }
         setMatrix((prevMatrix: Matrix) => {
             const newMatrix = prevMatrix.map((row) => [...row])

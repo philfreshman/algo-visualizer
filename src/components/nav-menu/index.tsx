@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarMenu, MenubarTrigger } from '@/components/atoms/menubar'
 import RunMenu from '@/components/nav-menu/run-menu'
 import { ThemeMenu } from '@/components/nav-menu/theme-menu'
-import { mazeAlgorithms, searchAlgorithms } from '@/lib/constants'
+import { type Algorithm, type Board, mazeAlgorithms, searchAlgorithms } from '@/lib/constants'
 import { AlgorithmContext } from '@/lib/coreContext'
 import { session } from '@/lib/helpers/storage'
 import { ui } from '@/lib/helpers/ui'
@@ -11,6 +11,7 @@ import { SpeedMenu } from './speed-menu'
 export default function Index() {
     const algorithmContext = useContext(AlgorithmContext)
     if (!algorithmContext) throw new Error('AlgorithmContext is missing')
+
     const {
         pathfindingAlgorithm,
         isCompleted,
@@ -21,7 +22,7 @@ export default function Index() {
         setIsRunning,
     } = algorithmContext
 
-    const onPathfindingChange = (key: string) => {
+    const onPathfindingChange = (key: Algorithm) => {
         if (!isCompleted) session.setItem('shouldTerminate', 'true')
         setIsRunning(false)
         setIsCompleted(true)
@@ -29,7 +30,7 @@ export default function Index() {
         ui.clearVisited()
     }
 
-    const onMazeGenerationChange = (key: string) => {
+    const onMazeGenerationChange = (key: Board) => {
         ui.clearVisited()
         if (!isCompleted) session.setItem('shouldTerminate', 'true')
         setIsRunning(false)
@@ -37,17 +38,15 @@ export default function Index() {
         setMazeGenerationAlgorithm(key)
     }
 
-    const onReset = () => {
-        console.log('onReset')
-        onMazeGenerationChange('CUSTOM')
-    }
+    const searchEntries = Object.entries(searchAlgorithms) as [Algorithm, string][]
+    const mazeEntries = Object.entries(mazeAlgorithms) as [Board, string][]
 
     return (
         <Menubar>
             <MenubarMenu>
                 <MenubarTrigger>Algorithm</MenubarTrigger>
                 <MenubarContent>
-                    {Object.entries(searchAlgorithms).map(([key, value]) => (
+                    {searchEntries.map(([key, value]) => (
                         <MenubarCheckboxItem checked={pathfindingAlgorithm === key} key={key} onClick={() => onPathfindingChange(key)}>
                             {value}
                         </MenubarCheckboxItem>
@@ -58,8 +57,14 @@ export default function Index() {
             <MenubarMenu>
                 <MenubarTrigger>Grid</MenubarTrigger>
                 <MenubarContent>
-                    {Object.entries(mazeAlgorithms).map(([key, value]) => (
-                        <MenubarCheckboxItem checked={mazeGenerationAlgorithm === key} key={key} onClick={() => onMazeGenerationChange(key)}>
+                    {mazeEntries.map(([key, value]) => (
+                        <MenubarCheckboxItem
+                            checked={mazeGenerationAlgorithm === key}
+                            key={key}
+                            onClick={() => {
+                                onMazeGenerationChange(key)
+                            }}
+                        >
                             {value}
                         </MenubarCheckboxItem>
                     ))}
@@ -68,7 +73,7 @@ export default function Index() {
 
             <SpeedMenu />
             <ThemeMenu />
-            <RunMenu onReset={onReset} />
+            <RunMenu />
         </Menubar>
     )
 }

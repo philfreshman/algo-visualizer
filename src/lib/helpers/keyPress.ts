@@ -16,5 +16,5 @@ export const keyPress = (key: string, func: () => void) => {
         return () => {
             window.removeEventListener('keypress', handleKeyPress)
         }
-    }, [])
+    }, [func, key])
 }

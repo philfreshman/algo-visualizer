@@ -28,7 +28,6 @@ interface AlgorithmState {
 export const AlgorithmContext = createContext<AlgorithmState | null>(null)
 
 export const AlgorithmProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    // prettier-ignore
     const init = () =>
         Array(rows)
             .fill(0)
