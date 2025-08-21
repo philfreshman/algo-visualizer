@@ -32,7 +32,7 @@ export default function RunMenu() {
 
     useEffect(() => {
         if (isCompleted) setIsRunning(false)
-    }, [isCompleted])
+    }, [isCompleted, setIsRunning])
 
     keyPress('x', resetAll)
 
