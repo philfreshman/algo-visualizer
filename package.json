@@ -29,7 +29,7 @@
         "@types/node": "^20",
         "@types/react": "^19.1.1",
         "@types/react-dom": "^19.1.1",
-        "autoprefixer": "^10.0.1",
+        "autoprefixer": "^10.4.21",
         "postcss": "^8",
         "prettier-plugin-organize-attributes": "^1.0.0",
         "prettier-plugin-organize-imports": "^4.2.0",
