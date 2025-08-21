@@ -1,8 +1,6 @@
 import { Roboto_Condensed } from 'next/font/google'
-import Image from 'next/image'
 import type { FC } from 'react'
 import Index from '@/components/nav-menu'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './atoms/dialog'
 
 const robotoCondensed = Roboto_Condensed({ weight: '800', style: 'italic', subsets: ['latin'] })
 
@@ -15,34 +13,17 @@ const Header: FC = () => {
                 }
             >
                 <div className={'flex h-1/2 items-center justify-center '}>
-                    <Dialog>
-                        <DialogTrigger>
-                            <h1
-                                className={
-                                    `select-none text-[50px] text-(--glitch-green) outline-amber-500 drop-shadow-[1px_1px_1px_rgba(0,0,0,0.5)] ` +
-                                    robotoCondensed.className
-                                }
-                                style={{
-                                    textShadow: 'var(--glitch-rose) 1.5px 1.5px 0,var(--glitch-violet) 3px 3px 0,var(--glitch-blue) 4.5px 4.5px 1px',
-                                }}
-                            >
-                                ALGO-VISUALIZER
-                            </h1>
-                        </DialogTrigger>
-                        <DialogContent className="bg-(--glitch-green)">
-                            <DialogHeader>
-                                <DialogTitle className="dark:text-black"> Get in touch</DialogTitle>
-                                <DialogDescription>
-                                    <Image
-                                        src="./qr2.png"
-                                        width="500"
-                                        height="500"
-                                        alt="qr-code"
-                                    />
-                                </DialogDescription>
-                            </DialogHeader>
-                        </DialogContent>
-                    </Dialog>
+                    <h1
+                        className={
+                            `select-none text-[50px] text-(--glitch-green) outline-amber-500 drop-shadow-[1px_1px_1px_rgba(0,0,0,0.5)] ` +
+                            robotoCondensed.className
+                        }
+                        style={{
+                            textShadow: 'var(--glitch-rose) 1.5px 1.5px 0,var(--glitch-violet) 3px 3px 0,var(--glitch-blue) 4.5px 4.5px 1px',
+                        }}
+                    >
+                        ALGO-VISUALIZER
+                    </h1>
                 </div>
                 <div className={'flex h-1/2 items-center justify-center'}>
                     <Index />
