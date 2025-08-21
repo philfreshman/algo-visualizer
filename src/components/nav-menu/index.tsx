@@ -27,7 +27,7 @@ export default function Index() {
         setIsRunning(false)
         setIsCompleted(true)
         setPathfindingAlgorithm(key)
-        
+
         // Defer DOM updates to next tick to avoid blocking the click handler
         requestAnimationFrame(() => {
             ui.clearVisited()
@@ -39,7 +39,7 @@ export default function Index() {
         setIsRunning(false)
         setIsCompleted(true)
         setMazeGenerationAlgorithm(key)
-        
+
         // Defer DOM updates to next tick to avoid blocking the click handler
         requestAnimationFrame(() => {
             ui.clearVisited()

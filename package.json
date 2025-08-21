@@ -2,10 +2,11 @@
     "name": "algo-visualizer",
     "private": true,
     "scripts": {
-        "dev": "next dev --turbo",
-        "turbo": "turbo dev",
-        "build": "next build",
-        "start": "next start"
+        "dev": "next dev --turbopack",
+        "build": "next build --turbopack",
+        "start": "next start",
+        "lint": "biome check",
+        "format": "biome format --write"
     },
     "dependencies": {
         "@radix-ui/react-dialog": "^1.1.15",
@@ -25,7 +26,7 @@
         "tailwindcss-animate": "^1.0.7"
     },
     "devDependencies": {
-        "@biomejs/biome": "2.1.1",
+        "@biomejs/biome": "2.2.0",
         "@types/node": "^20",
         "@types/react": "^19.1.1",
         "@types/react-dom": "^19.1.1",
