@@ -175,18 +175,33 @@ const MenubarLabel = React.forwardRef<
         inset?: boolean
     }
 >(({ className, inset, ...props }, ref) => (
-    <MenubarPrimitive.Label ref={ref} className={cn('px-2 py-1.5 text-sm font-semibold', inset && 'pl-8', className)} {...props} />
+    <MenubarPrimitive.Label
+        ref={ref}
+        className={cn('px-2 py-1.5 text-sm font-semibold', inset && 'pl-8', className)}
+        {...props}
+    />
 ))
 MenubarLabel.displayName = MenubarPrimitive.Label.displayName
 
 const MenubarSeparator = React.forwardRef<
     React.ElementRef<typeof MenubarPrimitive.Separator>,
     React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Separator>
->(({ className, ...props }, ref) => <MenubarPrimitive.Separator ref={ref} className={cn('-mx-1 my-1 h-px bg-muted', className)} {...props} />)
+>(({ className, ...props }, ref) => (
+    <MenubarPrimitive.Separator
+        ref={ref}
+        className={cn('-mx-1 my-1 h-px bg-muted', className)}
+        {...props}
+    />
+))
 MenubarSeparator.displayName = MenubarPrimitive.Separator.displayName
 
 const MenubarShortcut = ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => {
-    return <span className={cn('ml-auto text-xs tracking-widest text-muted-foreground', className)} {...props} />
+    return (
+        <span
+            className={cn('ml-auto text-xs tracking-widest text-muted-foreground', className)}
+            {...props}
+        />
+    )
 }
 MenubarShortcut.displayname = 'MenubarShortcut'
 

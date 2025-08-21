@@ -15,13 +15,22 @@ export const ThemeMenu = () => {
         <MenubarMenu>
             <MenubarTrigger>Theme</MenubarTrigger>
             <MenubarContent>
-                <MenubarCheckboxItem onClick={() => setThemeClick('light')} checked={currentTheme === 'light'}>
+                <MenubarCheckboxItem
+                    onClick={() => setThemeClick('light')}
+                    checked={currentTheme === 'light'}
+                >
                     Light
                 </MenubarCheckboxItem>
-                <MenubarCheckboxItem onClick={() => setThemeClick('dark')} checked={currentTheme === 'dark'}>
+                <MenubarCheckboxItem
+                    onClick={() => setThemeClick('dark')}
+                    checked={currentTheme === 'dark'}
+                >
                     Dark
                 </MenubarCheckboxItem>
-                <MenubarCheckboxItem onClick={() => setThemeClick('system')} checked={currentTheme === 'system'}>
+                <MenubarCheckboxItem
+                    onClick={() => setThemeClick('system')}
+                    checked={currentTheme === 'system'}
+                >
                     System
                 </MenubarCheckboxItem>
             </MenubarContent>

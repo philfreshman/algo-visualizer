@@ -69,7 +69,11 @@ export const Board = memo(() => {
 
     return (
         <div className={` flex rotate-90 transform justify-center box17:rotate-0 ${tableSize()}}} `}>
-            <table id="table" className={'h-full w-full '} style={{ cursor: 'crosshair' }}>
+            <table
+                id="table"
+                className={'h-full w-full '}
+                style={{ cursor: 'crosshair' }}
+            >
                 <tbody>
                     {matrix.map((row, i) => (
                         <tr key={i}>

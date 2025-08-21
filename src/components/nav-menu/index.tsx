@@ -55,7 +55,11 @@ export default function Index() {
                 <MenubarTrigger>Algorithm</MenubarTrigger>
                 <MenubarContent>
                     {searchEntries.map(([key, value]) => (
-                        <MenubarCheckboxItem checked={pathfindingAlgorithm === key} key={key} onClick={() => onPathfindingChange(key)}>
+                        <MenubarCheckboxItem
+                            checked={pathfindingAlgorithm === key}
+                            key={key}
+                            onClick={() => onPathfindingChange(key)}
+                        >
                             {value}
                         </MenubarCheckboxItem>
                     ))}

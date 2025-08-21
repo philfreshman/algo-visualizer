@@ -38,15 +38,24 @@ export default function RunMenu() {
 
     return (
         <>
-            <Button variant={'ghost'} onClick={resetAll}>
+            <Button
+                variant={'ghost'}
+                onClick={resetAll}
+            >
                 Reset
             </Button>
             {!isRunning ? (
-                <Button variant={'ghost'} onClick={setRun}>
+                <Button
+                    variant={'ghost'}
+                    onClick={setRun}
+                >
                     <PlayIcon className="h-[1.2rem] w-[1.2rem] transition duration-200 ease-in-out" />
                 </Button>
             ) : (
-                <Button variant={'ghost'} onClick={setPause}>
+                <Button
+                    variant={'ghost'}
+                    onClick={setPause}
+                >
                     <PauseIcon className="h-[1.2rem] w-[1.2rem] transition duration-200 ease-in-out" />
                 </Button>
             )}

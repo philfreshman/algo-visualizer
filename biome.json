@@ -16,7 +16,7 @@
         "indentWidth": 4,
         "lineEnding": "lf",
         "lineWidth": 150,
-        "attributePosition": "auto",
+        "attributePosition": "multiline",
         "bracketSameLine": false,
         "bracketSpacing": true,
         "expand": "auto",
@@ -40,7 +40,7 @@
             "arrowParentheses": "always",
             "bracketSameLine": false,
             "quoteStyle": "single",
-            "attributePosition": "auto",
+            "attributePosition": "multiline",
             "bracketSpacing": true
         }
     },
