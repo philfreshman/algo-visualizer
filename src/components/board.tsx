@@ -64,7 +64,7 @@ export const Board = memo(() => {
     // 17px - 680 px
 
     const tableSize = (): string => {
-        return 'aspect-[4/3] w-full box17:w-[680px] box19:w-[760px] box20:w-[800px] box22:w-[880px] box23:w-[920px] box24:w-[961px]'
+        return 'aspect-4/3 w-full box17:w-[680px] box19:w-[760px] box20:w-[800px] box22:w-[880px] box23:w-[920px] box24:w-[961px]'
     }
 
     return (

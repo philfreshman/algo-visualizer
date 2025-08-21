@@ -11,7 +11,7 @@ const Header: FC = () => {
         <div className={'flex h-40 w-full items-center justify-center'}>
             <div
                 className={
-                    'flex h-[110px] w-[500px] flex-col  rounded-2xl border-[1px] border-b-white shadow-[0_15px_50px_-15px_rgba(0,0,0,0.2)] dark:shadow-[0_15px_50px_-15px_rgba(0,0,0,0.2)]'
+                    'flex h-[110px] w-[500px] flex-col  rounded-2xl border border-b-white shadow-[0_15px_50px_-15px_rgba(0,0,0,0.2)] dark:shadow-[0_15px_50px_-15px_rgba(0,0,0,0.2)]'
                 }
             >
                 <div className={'flex h-1/2 items-center justify-center '}>
@@ -19,7 +19,7 @@ const Header: FC = () => {
                         <DialogTrigger>
                             <h1
                                 className={
-                                    `select-none text-[50px] text-[var(--glitch-green)] outline-amber-500 drop-shadow-[1px_1px_1px_rgba(0,0,0,0.5)] ` +
+                                    `select-none text-[50px] text-(--glitch-green) outline-amber-500 drop-shadow-[1px_1px_1px_rgba(0,0,0,0.5)] ` +
                                     robotoCondensed.className
                                 }
                                 style={{
@@ -29,7 +29,7 @@ const Header: FC = () => {
                                 ALGO-VISUALIZER
                             </h1>
                         </DialogTrigger>
-                        <DialogContent className="bg-[var(--glitch-green)]">
+                        <DialogContent className="bg-(--glitch-green)">
                             <DialogHeader>
                                 <DialogTitle className="dark:text-black"> Get in touch</DialogTitle>
                                 <DialogDescription>

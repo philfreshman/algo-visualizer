@@ -26,7 +26,7 @@ export const SpeedMenu = () => {
         <MenubarMenu>
             <MenubarTrigger>Speed</MenubarTrigger>
             <MenubarContent align={'center'}>
-                <MenubarItem className="focus:bg-white dark:focus:bg-[var(--glitch-dark)]">
+                <MenubarItem className="focus:bg-white dark:focus:bg-(--glitch-dark)">
                     <Slider
                         defaultValue={[speedScale - delay]}
                         min={0}
