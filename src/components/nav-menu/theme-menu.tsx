@@ -6,7 +6,7 @@ export const ThemeMenu = () => {
     const { theme, setTheme } = useTheme()
     const [currentTheme, setCurrentTheme] = useState(theme)
 
-    const setThemeClick = (theme: 'light' | 'dark') => {
+    const setThemeClick = (theme: 'light' | 'dark' | 'system') => {
         setTheme(theme)
         setCurrentTheme(theme)
     }
@@ -21,7 +21,9 @@ export const ThemeMenu = () => {
                 <MenubarCheckboxItem onClick={() => setThemeClick('dark')} checked={currentTheme === 'dark'}>
                     Dark
                 </MenubarCheckboxItem>
-                <MenubarCheckboxItem disabled>System</MenubarCheckboxItem>
+                <MenubarCheckboxItem onClick={() => setThemeClick('system')} checked={currentTheme === 'system'}>
+                    System
+                </MenubarCheckboxItem>
             </MenubarContent>
         </MenubarMenu>
     )
