@@ -30,7 +30,7 @@
         "@tailwindcss/postcss": "^4.1.12",
         "@types/node": "^24",
         "@types/react": "^19.1.11",
-        "@types/react-dom": "^19.1.1",
+        "@types/react-dom": "^19.1.9",
         "postcss": "^8",
         "prettier-plugin-organize-attributes": "^1.0.0",
         "prettier-plugin-organize-imports": "^4.2.0",
