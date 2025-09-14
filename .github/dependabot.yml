@@ -1,6 +1,5 @@
 version: 2
 updates:
-    # Production dependencies - more frequent updates
     - package-ecosystem: "npm"
       directory: "/"
       schedule:
@@ -11,9 +10,7 @@ updates:
       open-pull-requests-limit: 5
       labels:
           - "dependencies"
-          - "production"
           - "automated"
-        # Group related packages to reduce PR noise
       groups:
           react-ecosystem:
               patterns:
@@ -33,7 +30,6 @@ updates:
                   - "prettier*"
                   - "typescript"
                   - "@types/*"
-        # Auto-merge patch and minor updates for stable packages
       allow:
           - dependency-type: "direct"
             update-type: "version-update:semver-patch"
@@ -61,7 +57,7 @@ updates:
       directory: "/"
       schedule:
           interval: "monthly"
-          day: "first-monday"
+          day: "monday"
           time: "10:00"
           timezone: "UTC"
       open-pull-requests-limit: 3
