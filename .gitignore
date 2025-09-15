@@ -100,10 +100,6 @@ dist
 # vuepress build output
 .vuepress/dist
 
-# vuepress v2.x temp and cache directory
-.temp
-.cache
-
 # Docusaurus cache and generated files
 .docusaurus
 
@@ -134,3 +130,13 @@ bun.lockb
 .idea/
 # Turborepo
 .turbo
+
+# Rust
+rust/target/
+rust/pkg/
+*.wasm
+*.wasm.d.ts
+
+# Generated WASM files in public directory
+public/wasm/
+public/rust/

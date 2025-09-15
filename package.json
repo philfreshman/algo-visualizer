@@ -3,7 +3,8 @@
     "private": true,
     "scripts": {
         "dev": "next dev --turbopack",
-        "build": "next build --turbopack",
+        "build": "npm run build:wasm && next build --turbopack",
+        "build:wasm": "cd rust && wasm-pack build --target web --out-dir pkg",
         "start": "next start",
         "lint": "biome check",
         "format": "biome format --write"
