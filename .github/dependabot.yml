@@ -1,97 +1,36 @@
 version: 2
 updates:
     - package-ecosystem: "npm"
-      directory: "/"
+      directory: "/" # Location of package.json
       schedule:
           interval: "weekly"
-          day: "tuesday"
-          time: "09:00"
-          timezone: "UTC"
-      open-pull-requests-limit: 5
-      labels:
-          - "dependencies"
-          - "automated"
+          day: "monday"
       groups:
-          react-ecosystem:
+          react-framework:
               patterns:
-                  - "react*"
-                  - "@types/react*"
+                  - "next"
+                  - "react"
+                  - "react-dom"
+                  - "@types/react"
+                  - "@types/react-dom"
           radix-ui:
               patterns:
                   - "@radix-ui/*"
-          build-tools:
+          tailwindcss:
               patterns:
-                  - "next*"
-                  - "tailwind*"
-                  - "@tailwindcss/*"
-          dev-tooling:
+                  - "tailwindcss"
+                  - "tailwindcss-animate"
+                  - "tailwind-merge"
+                  - "@tailwindcss/postcss"
+                  - "postcss"
+                  - "prettier-plugin-tailwindcss"
+          prettier:
               patterns:
-                  - "@biomejs/*"
-                  - "prettier*"
-                  - "typescript"
+                  - "prettier"
+                  - "prettier-plugin-*"
+          biome:
+              patterns:
+                  - "@biomejs/biome"
+          typescript-types:
+              patterns:
                   - "@types/*"
-      allow:
-          - dependency-type: "direct"
-            update-type: "version-update:semver-patch"
-          - dependency-type: "direct"
-            update-type: "version-update:semver-minor"
-        # Ignore major version updates for critical packages (manual review needed)
-      ignore:
-          - dependency-name: "react"
-            update-types: ["version-update:semver-major"]
-          - dependency-name: "react-dom"
-            update-types: ["version-update:semver-major"]
-          - dependency-name: "next"
-            update-types: ["version-update:semver-major"]
-        # Custom commit message
-      commit-message:
-          prefix: "deps"
-          prefix-development: "deps-dev"
-          include: "scope"
-      rebase-strategy: "auto"
-        # Only check for security updates on weekends for non-critical deps
-      target-branch: "main"
-
-    # GitHub Actions - less frequent, security-focused
-    - package-ecosystem: "github-actions"
-      directory: "/"
-      schedule:
-          interval: "monthly"
-          day: "monday"
-          time: "10:00"
-          timezone: "UTC"
-      open-pull-requests-limit: 3
-      labels:
-          - "dependencies"
-          - "github-actions"
-          - "automated"
-      commit-message:
-          prefix: "ci"
-      rebase-strategy: "auto"
-        # Group all action updates together
-      groups:
-          github-actions:
-              patterns:
-                  - "*"
-
-    # Security-only updates (runs daily for critical security patches)
-    - package-ecosystem: "npm"
-      directory: "/"
-      schedule:
-          interval: "daily"
-          time: "06:00"
-          timezone: "UTC"
-      open-pull-requests-limit: 2
-      labels:
-          - "security"
-          - "critical"
-          - "automated"
-        # Only security updates
-      allow:
-          - dependency-type: "direct"
-            update-type: "security-update"
-          - dependency-type: "indirect"
-            update-type: "security-update"
-      commit-message:
-          prefix: "security"
-      rebase-strategy: "auto"
