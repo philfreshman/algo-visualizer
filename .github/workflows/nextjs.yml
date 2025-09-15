@@ -102,7 +102,8 @@ jobs:
             - name: Copy WASM files to output directory
               run: |
                   mkdir -p out/wasm
-                  cp rust/pkg/* out/wasm/
+                  cp rust/pkg/algo_visualizer_wasm.js out/wasm/
+                  cp rust/pkg/algo_visualizer_wasm_bg.wasm out/wasm/
 
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v4

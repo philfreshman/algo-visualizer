@@ -13,13 +13,16 @@ export async function loadWasm() {
     }
     
     try {
+        // Get the base path for production deployment
+        const basePath = process.env.NODE_ENV === 'production' ? '/algo-visualizer' : '';
+        
         // Load WASM module from public directory at runtime
-        const wasmModuleUrl = '/wasm/algo_visualizer_wasm.js';
+        const wasmModuleUrl = `${basePath}/wasm/algo_visualizer_wasm.js`;
         const wasm = await import(/* webpackIgnore: true */ wasmModuleUrl);
         
         // Initialize the WASM module
         if (!wasmInitialized) {
-            await wasm.default('/wasm/algo_visualizer_wasm_bg.wasm');
+            await wasm.default(`${basePath}/wasm/algo_visualizer_wasm_bg.wasm`);
             wasmInitialized = true;
         }
         
