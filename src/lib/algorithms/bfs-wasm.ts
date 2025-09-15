@@ -1,11 +1,13 @@
 import { delay, exe } from '@/lib/helpers/exe'
 import { local, session } from '@/lib/helpers/storage'
 import { ui } from '@/lib/helpers/ui'
-import { runBfsWasm } from '@/lib/wasm-loader'
 
 // BREADTH FIRST SEARCH - WASM Implementation
 export const bfsWasm = async (matrix: Matrix, visited: Position[], start: Position, target: Position): Promise<Position[] | null> => {
     try {
+        // Dynamically import the WASM loader to avoid build-time resolution
+        const { runBfsWasm } = await import('@/lib/wasm-loader');
+        
         // Run the Rust WASM BFS algorithm
         const wasmResult = await runBfsWasm(matrix, start, target);
         

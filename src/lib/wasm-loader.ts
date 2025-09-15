@@ -7,13 +7,19 @@ export async function loadWasm() {
         return wasmModule;
     }
     
+    // Check if we're in a browser environment
+    if (typeof window === 'undefined') {
+        throw new Error('WASM module can only be loaded in browser environment');
+    }
+    
     try {
-        // Import the WASM module using relative path
-        const wasm = await import('../../rust/pkg/algo_visualizer_wasm');
+        // Load WASM module from public directory at runtime
+        const wasmModuleUrl = '/wasm/algo_visualizer_wasm.js';
+        const wasm = await import(/* webpackIgnore: true */ wasmModuleUrl);
         
         // Initialize the WASM module
         if (!wasmInitialized) {
-            await wasm.default();
+            await wasm.default('/wasm/algo_visualizer_wasm_bg.wasm');
             wasmInitialized = true;
         }
         
