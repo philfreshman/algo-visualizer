@@ -2,7 +2,7 @@
 
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { aStar } from '@/lib/algorithms/a-star'
-import { bfs } from '@/lib/algorithms/bfs'
+import { bfsWasm } from '@/lib/algorithms/bfs-wasm'
 import { dfs } from '@/lib/algorithms/dfs'
 import { dijkstra } from '@/lib/algorithms/dijkstra'
 import { local, session } from '@/lib/helpers/storage'
@@ -32,7 +32,7 @@ export function useRunner() {
                 break
             case 'BFS':
                 ui.markStartAsVisited()
-                await bfs(matrix, visited, start, end)
+                await bfsWasm(matrix, visited, start, end)
                 break
             case 'ASTAR':
                 ui.markStartAsVisited()
@@ -68,8 +68,11 @@ export function useRunner() {
         ui.clearVisited()
     }
 
+    // biome-ignore lint/correctness/useExhaustiveDependencies: "not watching isRunning on purpose"
     useEffect(() => {
-        if (isRunning) run().then()
+        if (isRunning) {
+            run().then()
+        }
     }, [startTrigger])
 
     return { matrix, start, end, toggleBox, resetBoard, setStart, setEnd }
