@@ -2,7 +2,7 @@
 
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { aStar } from '@/lib/algorithms/a-star'
-import { bfsWasm } from '@/lib/algorithms/bfs-wasm'
+import { bfs } from '@/lib/algorithms/bfs'
 import { dfs } from '@/lib/algorithms/dfs'
 import { dijkstra } from '@/lib/algorithms/dijkstra'
 import { local, session } from '@/lib/helpers/storage'
@@ -32,7 +32,7 @@ export function useRunner() {
                 break
             case 'BFS':
                 ui.markStartAsVisited()
-                await bfsWasm(matrix, visited, start, end)
+                await bfs(matrix, visited, start, end)
                 break
             case 'ASTAR':
                 ui.markStartAsVisited()

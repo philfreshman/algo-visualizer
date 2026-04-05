@@ -55,14 +55,6 @@ jobs:
                   node-version: "20"
                   cache: ${{ steps.detect-package-manager.outputs.manager }}
 
-            - name: Setup Rust
-              uses: dtolnay/rust-toolchain@stable
-              with:
-                  toolchain: stable
-
-            - name: Install wasm-pack
-              run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-
             - name: Setup Pages
               uses: actions/configure-pages@v5
               with:
@@ -86,24 +78,8 @@ jobs:
             - name: Install dependencies
               run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
 
-            - name: Build WASM module
-              run: |
-                  cd rust
-                  wasm-pack build --target web --out-dir pkg
-
-            - name: Copy WASM files to public directory
-              run: |
-                  mkdir -p public/wasm
-                  cp rust/pkg/* public/wasm/
-
             - name: Build with Next.js
               run: ${{ steps.detect-package-manager.outputs.runner }} next build
-
-            - name: Copy WASM files to output directory
-              run: |
-                  mkdir -p out/wasm
-                  cp rust/pkg/algo_visualizer_wasm.js out/wasm/
-                  cp rust/pkg/algo_visualizer_wasm_bg.wasm out/wasm/
 
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v4

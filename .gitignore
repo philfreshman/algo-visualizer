@@ -130,13 +130,3 @@ bun.lockb
 .idea/
 # Turborepo
 .turbo
-
-# Rust
-rust/target/
-rust/pkg/
-*.wasm
-*.wasm.d.ts
-
-# Generated WASM files in public directory
-public/wasm/
-public/rust/

@@ -1,6 +1,6 @@
 <img src="/.github/logo.png" alt="ALGO-VISUALIZER" width="600">
 
-This project demonstrates a seamless integration between JavaScript and Rust - a visualization platform for pathfinding and graph algorithms. 
+This project is a visualization platform for pathfinding and graph algorithms.
 
 ## Features
 
@@ -12,8 +12,7 @@ This project demonstrates a seamless integration between JavaScript and Rust - a
 - Responsive grid system that adapts to different screen sizes
 
 ### Technology
-- **Rust + WebAssembly Integration**: Proof of concept WASM implemented in Rust
-- **Hybrid Execution**: WASM-first with TypeScript fallback for compatibility
+- **Frontend**: Next.js with TypeScript and Tailwind CSS
 - **Modern UI**: Built with Next.js, Tailwind CSS, and Radix UI components
 - **Theme Support**: Light, dark, and system theme modes
 - **Mobile Responsive**: Optimized for desktop and mobile devices
@@ -29,6 +28,6 @@ This project demonstrates a seamless integration between JavaScript and Rust - a
 This project showcases a modern web application architecture combining:
 
 - **Frontend**: Next.js 15 with TypeScript and Tailwind CSS
-- **Rust Layer**: Rust compiled to WebAssembly for compute-intensive algorithms
-- **Build System**: Integrated WASM compilation with Next.js static export
+- **Algorithm Layer**: TypeScript implementations for pathfinding
+- **Build System**: Next.js static export
 - **Deployment**: GitHub Pages with automated CI/CD
